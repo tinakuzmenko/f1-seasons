@@ -16,7 +16,7 @@ export const NavLogo = styled.img`
   display: block;
 `;
 
-export const NavList = styled.div`
+export const NavList = styled.ul`
   display: flex;
   gap: 3ch;
   margin: 0;
