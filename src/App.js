@@ -1,14 +1,14 @@
-import styled from 'styled-components';
+import {ThemeProvider} from 'styled-components';
+import {lightTheme} from './styles/light-theme';
+import {GlobalStyle} from './styles/GlobalStyles';
+import Nav from './UI/Nav/Nav';
 
-const Wrapper = styled.div`
-  text-align: center;
-`;
-
-function App() {
+const App = () => {
   return (
-    <Wrapper>
-      <h1>F1 Seasons App</h1>
-    </Wrapper>
+    <ThemeProvider theme={lightTheme}>
+      <GlobalStyle/>
+      <Nav/>
+    </ThemeProvider>
   );
 }
 
