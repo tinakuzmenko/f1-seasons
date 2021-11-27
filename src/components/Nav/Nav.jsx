@@ -1,4 +1,4 @@
-import Container from '../Container/Container';
+import Container from '../UI/Container/Container';
 import img from '../../images/f1-seasons-logo.svg';
 import {NavInnerWrapper, NavList, NavLogo, NavWrapper} from './styles';
 
@@ -9,9 +9,10 @@ const Nav = () => {
         <NavInnerWrapper>
           <NavLogo src={img} width='70'></NavLogo>
           <NavList>
-            <li><a href="">Favorites</a></li>
-            <li><a href="">Drivers</a></li>
-            <li><a href="">Teams</a></li>
+            <li><a href="#">Seasons</a></li>
+            <li><a href="#">Drivers</a></li>
+            <li><a href="#">Teams</a></li>
+            <li><a href="#">Favorites</a></li>
           </NavList>
         </NavInnerWrapper>
       </Container>
