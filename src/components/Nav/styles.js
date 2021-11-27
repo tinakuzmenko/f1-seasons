@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const NavWrapper = styled.nav`
   background-color: ${({theme}) => theme.primaryColor};
-  padding: 10px 0;
+  padding: 20px 0;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 `;
 
