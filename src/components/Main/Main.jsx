@@ -1,25 +1,32 @@
 import Container from '../UI/Container/Container';
 import SeasonSelect from '../SeasonSelect/SeasonSelect';
 import RoundsList from '../RoundsList/RoundsList';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {getSeasons} from '../../api/getSeasons';
+import {MainWrapper} from './styles';
 
-const Main = (props) => {
+const Main = () => {
   const [selectedSeason, setSelectedSeason] = useState('2021');
+  const [seasons, setSeasons] = useState();
+
+  useEffect(() => {
+    getSeasons().then((response) => setSeasons(response));
+  }, []);
 
   const seasonSelectChangeHandler = (season) => {
     setSelectedSeason(season);
   }
 
   return (
-    <main>
+    <MainWrapper>
       <Container>
-        {props.seasons
-          ? <SeasonSelect onChange={seasonSelectChangeHandler} selected={selectedSeason} seasons={props.seasons}/>
+        {seasons
+          ? <SeasonSelect onChange={seasonSelectChangeHandler} selected={selectedSeason} seasons={seasons}/>
           : <p>Loading...</p>
         }
         <RoundsList season={selectedSeason}/>
       </Container>
-    </main>
+    </MainWrapper>
   );
 };
 

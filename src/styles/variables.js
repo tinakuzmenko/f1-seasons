@@ -10,4 +10,5 @@ export const lightThemeColors = {
   primaryColor: '#e10600',
   secondaryColor: '#1d7874',
   neutralColor: '#7c8483',
+  shadowColor: '#f4f4f4f4',
 };

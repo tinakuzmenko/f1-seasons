@@ -16,7 +16,9 @@ const RoundsList = (props) => {
     <>
       {
         rounds
-          ? <RoundsListWrapper>{rounds.map((round) => <Round key={round.round} round={round}/>)}</RoundsListWrapper>
+          ? <RoundsListWrapper>
+            {rounds.map((round) => <Round key={round.round} round={round}/>)}
+          </RoundsListWrapper>
           : <p>Loading...</p>
       }
     </>

@@ -1,11 +1,22 @@
+import {RoundDate, RoundLink, RoundDateDay} from './styles';
+import dayjs from 'dayjs';
+
 const Round = ({round}) => {
+  const date = dayjs(round.date);
+  const location = round.Circuit.Location;
+
   return (
     <li>
-      <div>{round.round}</div>
-      <div>{round.date}</div>
-      <div>{round.raceName}</div>
-      <div>{round.Circuit.Location.locality}</div>
-      <div>{round.Circuit.Location.country}</div>
+      <RoundLink href="">
+        <div>
+          <RoundDate>
+            <RoundDateDay>{`${date.format('DD')}`}</RoundDateDay>
+            <span>{`${date.format('MMM')}`}</span>
+          </RoundDate>
+        </div>
+        <div>{round.raceName}</div>
+        <div>{`${location.locality}, ${location.country}`}</div>
+      </RoundLink>
     </li>
   );
 };
