@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const RoundLink = styled.a`
+export const RoundItemLink = styled.a`
   display: grid;
   grid-template-columns: auto 1fr 1fr auto;
   align-items: center;
@@ -14,23 +14,11 @@ export const RoundLink = styled.a`
     border-color: ${({theme}) => theme.fontColor};
     cursor: pointer;
   }
-
-  > div {
-    padding: 20px 20px;
-  }
 `;
 
-export const RoundDate = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-  background-color: ${({theme}) => theme.fontColor};
-  color: ${({theme}) => theme.backgroundColor};
-  border-radius: 10px;
-  padding: 10px 30px;
-`;
-
-export const RoundDateDay = styled.span`
-  font-size: 24px;
-  font-weight: bold;
+export const RoundItemInnerWrapper = styled.div`
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 `;

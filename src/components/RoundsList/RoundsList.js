@@ -15,7 +15,13 @@ const RoundsList = (props) => {
     return (
       <RoundsListWrapper>
         {!rounds.length && <p>Loading...</p>}
-        {rounds.map((round) => <RoundItem key={round.round} season={props.season} round={round}/>)}
+        {rounds.map((round) => {
+          return (
+            <li key={round.round}>
+              <RoundItem season={props.season} round={round}/>
+            </li>
+          )
+        })}
       </RoundsListWrapper>
     )
   }
