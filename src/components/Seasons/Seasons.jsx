@@ -2,12 +2,14 @@ import {useEffect, useState} from 'react';
 import {getSeasons} from '../../api/getSeasons';
 import SeasonSelect from '../SeasonSelect/SeasonSelect';
 import RoundsList from '../RoundsList/RoundsList';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 const Seasons = () => {
-  const [selectedSeason, setSelectedSeason] = useState('2021');
-  const [seasons, setSeasons] = useState([]);
   const navigate = useNavigate();
+  const {seasonId} = useParams();
+
+  const [selectedSeason, setSelectedSeason] = useState(seasonId || '2021');
+  const [seasons, setSeasons] = useState([]);
 
   useEffect(() => {
     getSeasons().then((response) => setSeasons(response));
@@ -15,7 +17,7 @@ const Seasons = () => {
 
   const seasonSelectChangeHandler = (season) => {
     setSelectedSeason(season);
-    navigate(`/seasons/${season}`, {state: {season}, replace: true});
+    navigate(`/seasons/${season}`, {replace: true});
   }
 
   return seasons.length

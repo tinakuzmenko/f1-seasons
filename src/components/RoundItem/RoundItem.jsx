@@ -9,10 +9,7 @@ const RoundItem = ({round, season}) => {
 
   const roundClickHandler = (event) => {
     event.preventDefault();
-    navigate(`/seasons/${season}/${round.round}`, {
-      state: {round: round.round, season},
-      replace: true
-    });
+    navigate(`/seasons/${season}/${round.round}`, {replace: true});
   };
 
   return (

@@ -12,6 +12,7 @@ export const RoundLink = styled.a`
 
   &:hover {
     border-color: ${({theme}) => theme.fontColor};
+    cursor: pointer;
   }
 
   > div {

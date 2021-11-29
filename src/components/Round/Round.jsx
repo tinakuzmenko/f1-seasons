@@ -1,28 +1,29 @@
-import {useLocation} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {getRoundData} from '../../api/getRoundData';
+import Loader from '../UI/Loader/Loader';
 
 const Round = () => {
+  const [raceData, setRaceData] = useState({});
   const [results, setResults] = useState([]);
-  const [raceName, setRaceName] = useState('');
-  const location = useLocation();
-  const round = location.state.round;
-  const season = location.state.season;
+  const {seasonId, roundId} = useParams();
 
   useEffect(() => {
-    getRoundData(season, round).then((response) => {
-      setResults(response.Results);
-      setRaceName(response.raceName);
+    getRoundData(seasonId, roundId).then((response) => {
+      setRaceData(response);
+
+      const sortedResults = [...response.Results].sort((a, b) => a.position - b.position);
+      setResults(sortedResults);
     });
-  }, [season, round]);
+  }, [seasonId, roundId]);
 
   return results.length
     ? <>
-      <h2>{raceName}</h2>
+      <h2>{raceData.raceName}</h2>
       <ul>
         {results.map((result) => {
           return (
-            <li>
+            <li key={result.position}>
               <div>{result.position}</div>
               <div>{result.number}</div>
               <div>{`${result.Driver.givenName} ${result.Driver.familyName}`}</div>
@@ -32,7 +33,7 @@ const Round = () => {
         })}
       </ul>
     </>
-    : <p>Loading...</p>
+    : <Loader/>
 }
 
 export default Round;

@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {NavInnerWrapper, NavList, NavLogo, NavWrapper} from './styles';
 import img from '../../images/f1-seasons-logo.svg';
 import Container from '../UI/Container/Container';
@@ -11,16 +11,16 @@ const Nav = () => {
           <NavLogo src={img} width='70'></NavLogo>
           <NavList>
             <li>
-              <Link to="/">Seasons</Link>
+              <NavLink to="/">Seasons</NavLink>
             </li>
             <li>
-              <Link to="drivers">Drivers</Link>
+              <NavLink to="drivers">Drivers</NavLink>
             </li>
             <li>
-              <Link to="teams">Teams</Link>
+              <NavLink to="teams">Teams</NavLink>
             </li>
             <li>
-              <Link to="favorites">Favorites</Link>
+              <NavLink to="favorites">Favorites</NavLink>
             </li>
           </NavList>
         </NavInnerWrapper>
