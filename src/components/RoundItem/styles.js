@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const RoundItemLink = styled.a`
   display: grid;
-  grid-template-columns: auto 1fr 1fr auto;
+  grid-template-columns: auto 2fr 3fr;
+  padding: 10px 10px;
   align-items: center;
-  gap: 2ch;
+  gap: 20px;
   color: ${({theme}) => theme.fontColor};
   border-radius: 10px;
   background-color: ${({theme}) => theme.shadowColor};
@@ -16,9 +17,8 @@ export const RoundItemLink = styled.a`
   }
 `;
 
-export const RoundItemInnerWrapper = styled.div`
-  padding: 10px 10px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
+export const RoundItemRace = styled.div`
+  font-size: 18px;
+  font-weight: ${({round}) => !round && 'bold'};
+  color: ${({round, theme}) => round && theme.neutralColor}
 `;

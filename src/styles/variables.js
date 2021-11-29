@@ -11,4 +11,5 @@ export const lightThemeColors = {
   secondaryColor: '#1d7874',
   neutralColor: '#7c8483',
   shadowColor: '#f4f4f4f4',
+  secondaryShadowColor: 'rgba(29,120,116,0.2)',
 };

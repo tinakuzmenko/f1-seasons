@@ -25,5 +25,9 @@ export const NavList = styled.ul`
 
   a {
     color: ${({theme}) => theme.backgroundColor};
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 `;

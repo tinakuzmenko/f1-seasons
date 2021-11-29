@@ -1,4 +1,4 @@
-import {SeasonSelectWrapper} from './styles';
+import Title from '../UI/Title/Title';
 
 const SeasonSelect = (props) => {
   const selectChangeHandler = (event) => {
@@ -6,12 +6,11 @@ const SeasonSelect = (props) => {
   };
 
   return (
-    <SeasonSelectWrapper>
-      <h2>Selected season:</h2>
+    <Title title={'Selected season:'}>
       <select value={props.selected} onChange={selectChangeHandler}>
         {props.seasons.map((season) => <option key={season.season}>{season.season}</option>)}
       </select>
-    </SeasonSelectWrapper>
+    </Title>
   )
 }
 

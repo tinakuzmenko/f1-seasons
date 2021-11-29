@@ -1,11 +1,15 @@
-import {RoundItemCountry} from './styles';
+import {RoundItemCountry, RoundItemLocationWrapper} from './styles';
+import Flag from '../UI/Flag/Flag';
 
 const RoundItemLocation = ({circuit, location}) => {
   return (
-    <div>
-      <div>{circuit.circuitName}</div>
-      <RoundItemCountry>{`${location.locality}, ${location.country}`}</RoundItemCountry>
-    </div>
+    <RoundItemLocationWrapper>
+      <Flag country={location.country} size={40}/>
+      <div>
+        <div>{circuit.circuitName}</div>
+        <RoundItemCountry>{`${location.locality}, ${location.country}`}</RoundItemCountry>
+      </div>
+    </RoundItemLocationWrapper>
   );
 }
 

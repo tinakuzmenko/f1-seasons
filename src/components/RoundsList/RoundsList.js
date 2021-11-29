@@ -1,7 +1,8 @@
-import {getSeasonRounds} from '../../api/getSeasonRounds';
 import {useEffect, useState} from 'react';
-import RoundItem from '../RoundItem/RoundItem';
+import {getSeasonRounds} from '../../api/getSeasonRounds';
 import {RoundsListWrapper} from './styles';
+import RoundItem from '../RoundItem/RoundItem';
+import Loader from '../UI/Loader/Loader';
 
 const RoundsList = (props) => {
     const [rounds, setRounds] = useState([]);
@@ -14,7 +15,7 @@ const RoundsList = (props) => {
 
     return (
       <RoundsListWrapper>
-        {!rounds.length && <p>Loading...</p>}
+        {!rounds.length && <Loader/>}
         {rounds.map((round) => {
           return (
             <li key={round.round}>

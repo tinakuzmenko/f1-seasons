@@ -1,7 +1,11 @@
 import {useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {getRoundData} from '../../api/getRoundData';
+import {Results} from './styles';
+import Title from '../UI/Title/Title';
 import Loader from '../UI/Loader/Loader';
+import ResultRow from '../ResultRow/ResultRow';
+import {RowWrapper} from '../ResultRow/styles';
 
 const Round = () => {
   const [raceData, setRaceData] = useState({});
@@ -17,23 +21,16 @@ const Round = () => {
     });
   }, [seasonId, roundId]);
 
-  return results.length
-    ? <>
-      <h2>{raceData.raceName}</h2>
-      <ul>
-        {results.map((result) => {
-          return (
-            <li key={result.position}>
-              <div>{result.position}</div>
-              <div>{result.number}</div>
-              <div>{`${result.Driver.givenName} ${result.Driver.familyName}`}</div>
-              <div>{result.status}</div>
-            </li>
-          )
-        })}
-      </ul>
-    </>
-    : <Loader/>
+  return (
+    results.length
+      ? <>
+        <Title title={raceData.raceName}/>
+        <Results>
+          {results.map((result) => <ResultRow key={result.position} result={result}/>)}
+        </Results>
+      </>
+      : <Loader/>
+  );
 }
 
 export default Round;

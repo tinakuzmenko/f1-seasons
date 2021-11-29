@@ -3,11 +3,11 @@ import {getSeasons} from '../../api/getSeasons';
 import SeasonSelect from '../SeasonSelect/SeasonSelect';
 import RoundsList from '../RoundsList/RoundsList';
 import {useNavigate, useParams} from 'react-router-dom';
+import Loader from '../UI/Loader/Loader';
 
 const Seasons = () => {
   const navigate = useNavigate();
   const {seasonId} = useParams();
-
   const [selectedSeason, setSelectedSeason] = useState(seasonId || '2021');
   const [seasons, setSeasons] = useState([]);
 
@@ -25,7 +25,7 @@ const Seasons = () => {
       <SeasonSelect onChange={seasonSelectChangeHandler} selected={selectedSeason} seasons={seasons}/>
       <RoundsList season={selectedSeason}/>
     </>
-    : <p>Loading...</p>
+    : <Loader/>
 }
 
 export default Seasons;
