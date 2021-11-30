@@ -2,7 +2,7 @@ import {RoundRace} from './styles';
 import {useNavigate} from 'react-router-dom';
 import RoundDate from './RoundDate/RoundDate';
 import RoundLocation from './RoundLocation/RoundLocation';
-import {GridRowClickable} from '../UI/Grid/GridRow/styles';
+import {GridRowClickable} from '../../../UI/Grid/GridRow/styles';
 
 const Round = ({round, season}) => {
   const navigate = useNavigate();

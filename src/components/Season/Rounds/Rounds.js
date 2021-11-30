@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react';
-import {getSeasonRounds} from '../../api/getSeasonRounds';
-import Round from '../Round/Round';
-import Loader from '../UI/Loader/Loader';
-import GridLayout from '../UI/Grid/GridLayout/GridLayout';
+import {getSeasonRounds} from '../../../api/getSeasonRounds';
+import Round from './Round/Round';
+import Loader from '../../UI/Loader/Loader';
+import GridLayout from '../../UI/Grid/GridLayout/GridLayout';
 
-const RoundsList = (props) => {
+const Rounds = (props) => {
     const [rounds, setRounds] = useState([]);
 
     useEffect(() => {
@@ -23,4 +23,4 @@ const RoundsList = (props) => {
   }
 ;
 
-export default RoundsList;
+export default Rounds;

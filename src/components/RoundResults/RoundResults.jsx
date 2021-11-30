@@ -3,8 +3,9 @@ import {useEffect, useState} from 'react';
 import {getRoundData} from '../../api/getRoundData';
 import Title from '../UI/Title/Title';
 import Loader from '../UI/Loader/Loader';
-import RoundResultRow from '../RoundResultRow/RoundResultRow';
+import RoundResult from './RoundResult/RoundResult';
 import GridLayout from '../UI/Grid/GridLayout/GridLayout';
+import ResultsHeader from './ResultsHeader/ResultsHeader';
 
 const RoundResults = () => {
   const [raceData, setRaceData] = useState({});
@@ -28,7 +29,8 @@ const RoundResults = () => {
     <>
       <Title title={raceData.raceName}/>
       <GridLayout>
-        {results.map((result) => <RoundResultRow key={result.position} result={result}/>)}
+        <ResultsHeader/>
+        {results.map((result) => <RoundResult key={result.position} result={result}/>)}
       </GridLayout>
     </>
   );

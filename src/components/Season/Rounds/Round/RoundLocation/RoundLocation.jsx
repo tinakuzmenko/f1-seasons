@@ -1,5 +1,5 @@
 import {RoundItemCountry, RoundItemLocationWrapper} from './styles';
-import Flag from '../../UI/Flag/Flag';
+import Flag from '../../../../UI/Flag/Flag';
 
 const RoundLocation = ({circuit, location}) => {
   return (

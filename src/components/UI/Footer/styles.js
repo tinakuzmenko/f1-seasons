@@ -5,21 +5,15 @@ export const FooterWrapper = styled.footer`
   padding: 30px 0;
 `;
 
-export const FooterInnerWrapper = styled.div`
+export const FooterLayout = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
 export const FooterCopyright = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
   color: ${({theme}) => theme.backgroundColor};
   font-size: 12px;
-
-  > p {
-    margin: 0;
-  }
 `;
 
 export const FooterSocial = styled.div`

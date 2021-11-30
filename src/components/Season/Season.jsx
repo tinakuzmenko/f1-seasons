@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {getSeasons} from '../../api/getSeasons';
-import SeasonSelect from '../SeasonSelect/SeasonSelect';
-import RoundsList from '../RoundsList/RoundsList';
+import SeasonSelect from './SeasonSelect/SeasonSelect';
+import Rounds from './Rounds/Rounds';
 import Loader from '../UI/Loader/Loader';
 import Title from '../UI/Title/Title';
 
@@ -28,7 +28,7 @@ const Season = () => {
       <Title title={'Selected season:'}>
         <SeasonSelect onChange={seasonSelectChangeHandler} selected={selectedSeason} seasons={seasons}/>
       </Title>
-      <RoundsList season={selectedSeason}/>
+      <Rounds season={selectedSeason}/>
     </>
   )
 }
