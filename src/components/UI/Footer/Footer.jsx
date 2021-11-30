@@ -1,13 +1,14 @@
-import {FooterCopyright, FooterInnerWrapper, FooterLogo, FooterWrapper} from './styles';
-import img from '../../images/f1-seasons-logo.svg';
-import Container from '../UI/Container/Container';
+import {FooterCopyright, FooterInnerWrapper, FooterWrapper} from './styles';
+import img from '../../../images/f1-seasons-logo.svg';
+import Container from '../Container/Container';
+import Logo from '../Logo/Logo';
 
 const Footer = () => {
   return (
     <FooterWrapper>
       <Container>
         <FooterInnerWrapper>
-          <FooterLogo src={img} width='70'></FooterLogo>
+          <Logo src={img} size='70'/>
           <FooterCopyright>
             &copy; Design & code by Tina Kuzmenko, 2021.
           </FooterCopyright>

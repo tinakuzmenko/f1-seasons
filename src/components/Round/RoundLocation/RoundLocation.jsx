@@ -1,7 +1,7 @@
 import {RoundItemCountry, RoundItemLocationWrapper} from './styles';
-import Flag from '../UI/Flag/Flag';
+import Flag from '../../UI/Flag/Flag';
 
-const RoundItemLocation = ({circuit, location}) => {
+const RoundLocation = ({circuit, location}) => {
   return (
     <RoundItemLocationWrapper>
       <Flag country={location.country} size={40}/>
@@ -13,4 +13,4 @@ const RoundItemLocation = ({circuit, location}) => {
   );
 }
 
-export default RoundItemLocation;
+export default RoundLocation;

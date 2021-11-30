@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const RowWrapper = styled.li`
   display: grid;
-  grid-template-columns: 3% 3% 3% 3fr 3fr 2fr 2fr auto auto;
+  grid-template-columns: 3% 3% 3% 3fr 3fr 2fr auto auto;
   align-items: center;
   grid-gap: 20px;
   padding: 10px 20px;

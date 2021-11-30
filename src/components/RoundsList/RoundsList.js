@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import {getSeasonRounds} from '../../api/getSeasonRounds';
-import {RoundsListWrapper} from './styles';
-import RoundItem from '../RoundItem/RoundItem';
+import Round from '../Round/Round';
 import Loader from '../UI/Loader/Loader';
+import GridLayout from '../UI/Grid/GridLayout/GridLayout';
 
 const RoundsList = (props) => {
     const [rounds, setRounds] = useState([]);
@@ -14,16 +14,10 @@ const RoundsList = (props) => {
     }, [props.season]);
 
     return (
-      <RoundsListWrapper>
+      <GridLayout>
         {!rounds.length && <Loader/>}
-        {rounds.map((round) => {
-          return (
-            <li key={round.round}>
-              <RoundItem season={props.season} round={round}/>
-            </li>
-          )
-        })}
-      </RoundsListWrapper>
+        {rounds.map((round) => <Round key={round.round} season={props.season} round={round}/>)}
+      </GridLayout>
     )
   }
 ;

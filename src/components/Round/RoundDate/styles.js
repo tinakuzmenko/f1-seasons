@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const RoundDate = styled.div`
+export const RoundDateWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;

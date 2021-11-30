@@ -11,10 +11,6 @@ export const FooterInnerWrapper = styled.div`
   align-items: center;
 `;
 
-export const FooterLogo = styled.img`
-  display: block;
-`;
-
 export const FooterCopyright = styled.div`
   display: flex;
   gap: 3ch;

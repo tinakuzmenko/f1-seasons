@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const RoundsListWrapper = styled.ul`
+export const GridLayoutWrapper = styled.ul`
   list-style: none;
-  display: grid;
-  row-gap: 5px;
   padding: 0;
   margin: 0;
+  display: grid;
+  row-gap: 5px;
 `;

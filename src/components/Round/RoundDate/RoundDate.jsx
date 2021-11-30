@@ -1,15 +1,15 @@
-import {RoundDate, RoundDateDay} from './styles';
+import {RoundDateWrapper, RoundDateDay} from './styles';
 import dayjs from 'dayjs';
 
-const RoundItemDate = (props) => {
+const RoundDate = (props) => {
   const date = dayjs(props.date);
 
   return (
-    <RoundDate>
+    <RoundDateWrapper>
       <RoundDateDay>{`${date.format('DD')}`}</RoundDateDay>
       <span>{`${date.format('MMM')}`}</span>
-    </RoundDate>
+    </RoundDateWrapper>
   )
 }
 
-export default RoundItemDate;
+export default RoundDate;

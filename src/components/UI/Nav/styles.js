@@ -12,10 +12,6 @@ export const NavInnerWrapper = styled.div`
   align-items: center;
 `;
 
-export const NavLogo = styled.img`
-  display: block;
-`;
-
 export const NavList = styled.ul`
   display: flex;
   gap: 3ch;
