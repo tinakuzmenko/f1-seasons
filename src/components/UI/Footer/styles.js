@@ -12,11 +12,22 @@ export const FooterInnerWrapper = styled.div`
 `;
 
 export const FooterCopyright = styled.div`
-  display: flex;
-  gap: 3ch;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
   color: ${({theme}) => theme.backgroundColor};
   font-size: 12px;
+
+  > p {
+    margin: 0;
+  }
+`;
+
+export const FooterSocial = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 5px;
+
+  a:hover {
+    opacity: 0.7;
+  }
 `;

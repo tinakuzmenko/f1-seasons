@@ -4,6 +4,7 @@ import {getSeasons} from '../../api/getSeasons';
 import SeasonSelect from '../SeasonSelect/SeasonSelect';
 import RoundsList from '../RoundsList/RoundsList';
 import Loader from '../UI/Loader/Loader';
+import Title from '../UI/Title/Title';
 
 const Season = () => {
   const navigate = useNavigate();
@@ -20,12 +21,16 @@ const Season = () => {
     navigate(`/seasons/${season}`, {replace: true});
   }
 
-  return seasons.length
-    ? <>
-      <SeasonSelect onChange={seasonSelectChangeHandler} selected={selectedSeason} seasons={seasons}/>
+  if (!seasons.length) return <Loader/>;
+
+  return (
+    <>
+      <Title title={'Selected season:'}>
+        <SeasonSelect onChange={seasonSelectChangeHandler} selected={selectedSeason} seasons={seasons}/>
+      </Title>
       <RoundsList season={selectedSeason}/>
     </>
-    : <Loader/>
+  )
 }
 
 export default Season;

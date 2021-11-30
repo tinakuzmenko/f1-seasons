@@ -13,9 +13,10 @@ const RoundsList = (props) => {
       });
     }, [props.season]);
 
+    if (!rounds.length) return <Loader/>;
+
     return (
       <GridLayout>
-        {!rounds.length && <Loader/>}
         {rounds.map((round) => <Round key={round.round} season={props.season} round={round}/>)}
       </GridLayout>
     )

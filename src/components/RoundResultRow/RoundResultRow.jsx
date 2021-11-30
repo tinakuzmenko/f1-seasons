@@ -1,15 +1,14 @@
 import GridRow from '../UI/Grid/GridRow/GridRow';
 
-const ResultRow = ({result}) => {
+const RoundResultRow = ({result}) => {
   console.log(result);
 
   return (
     <GridRow
-      columns={'3% 3% 3% 3fr 3fr 2fr auto auto'}
+      columns={'3% 3% 3fr 3fr 2fr auto auto'}
       highlighted={result.position <= 3}
     >
       <div>{result.position}</div>
-      <div>{result.number}</div>
       <div>{result.Driver.code}</div>
       <div>{`${result.Driver.givenName} ${result.Driver.familyName}`}</div>
       <div>{result.Constructor.name}</div>
@@ -20,4 +19,4 @@ const ResultRow = ({result}) => {
   )
 }
 
-export default ResultRow;
+export default RoundResultRow;

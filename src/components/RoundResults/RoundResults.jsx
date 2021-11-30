@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 import {getRoundData} from '../../api/getRoundData';
 import Title from '../UI/Title/Title';
 import Loader from '../UI/Loader/Loader';
-import ResultRow from '../ResultRow/ResultRow';
+import RoundResultRow from '../RoundResultRow/RoundResultRow';
 import GridLayout from '../UI/Grid/GridLayout/GridLayout';
 
 const RoundResults = () => {
@@ -13,22 +13,24 @@ const RoundResults = () => {
 
   useEffect(() => {
     getRoundData(seasonId, roundId).then((response) => {
-      setRaceData(response);
+      if (!response) return;
 
       const sortedResults = [...response.Results].sort((a, b) => a.position - b.position);
+
+      setRaceData(response);
       setResults(sortedResults);
     });
   }, [seasonId, roundId]);
 
+  if (!results.length) return <Loader/>
+
   return (
-    results.length
-      ? <>
-        <Title title={raceData.raceName}/>
-        <GridLayout>
-          {results.map((result) => <ResultRow key={result.position} result={result}/>)}
-        </GridLayout>
-      </>
-      : <Loader/>
+    <>
+      <Title title={raceData.raceName}/>
+      <GridLayout>
+        {results.map((result) => <RoundResultRow key={result.position} result={result}/>)}
+      </GridLayout>
+    </>
   );
 }
 
