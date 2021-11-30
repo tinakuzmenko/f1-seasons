@@ -1,20 +1,17 @@
-import GridRow from '../../UI/Grid/GridRow/GridRow';
-import {ResultsHeaderContent} from './styles';
+import {ResultsHeaderWrapper} from './styles';
 
 const ResultsHeader = () => {
   return (
-    <GridRow
-      columns={'1fr 1fr 5fr 4fr 4fr 1fr 1fr 1fr'}
-    >
-      <ResultsHeaderContent>#</ResultsHeaderContent>
-      <ResultsHeaderContent>Code</ResultsHeaderContent>
-      <ResultsHeaderContent>Driver</ResultsHeaderContent>
-      <ResultsHeaderContent>Team</ResultsHeaderContent>
-      <ResultsHeaderContent>Time</ResultsHeaderContent>
-      <ResultsHeaderContent>Points</ResultsHeaderContent>
-      <ResultsHeaderContent>Laps</ResultsHeaderContent>
+    <ResultsHeaderWrapper>
+      <div>#</div>
+      <div>Code</div>
+      <div>Driver</div>
+      <div>Team</div>
+      <div>Time</div>
+      <div>Points</div>
+      <div>Laps</div>
       <div></div>
-    </GridRow>
+    </ResultsHeaderWrapper>
   )
 }
 

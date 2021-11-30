@@ -5,10 +5,12 @@ export const Position = styled.div`
   font-weight: bold;
 `;
 
-export const Code = styled.div`
+export const SecondaryContent = styled.div`
   color: ${({theme}) => theme.neutralColor};
 `;
 
-export const Time = styled.div`
-  color: ${({theme}) => theme.neutralColor};
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
