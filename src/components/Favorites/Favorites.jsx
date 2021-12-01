@@ -1,7 +1,7 @@
 import Title from '../UI/Title/Title';
 import {useEffect, useState} from 'react';
 import GridLayout from '../UI/Grid/GridLayout/GridLayout';
-import GridRow from '../UI/Grid/GridRow/GridRow';
+import FavoriteDriver from './FavoriteDriver/FavoriteDriver';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
@@ -18,7 +18,7 @@ const Favorites = () => {
       <Title title='Favorites'/>
       {!favorites.length && <p>Your favorites list is empty.</p>}
       <GridLayout>
-        {favorites.map((favorite) => <GridRow>{favorite}</GridRow>)}
+        {favorites.map((favorite) => <FavoriteDriver key={favorite} driver={favorite}/>)}
       </GridLayout>
     </>
   )
