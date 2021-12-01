@@ -1,6 +1,6 @@
 import GridRow from '../../UI/Grid/GridRow/GridRow';
-import FavoritesButton from '../../UI/FavoritesButton/FavoritesButton';
 import {ButtonWrapper, Position, SecondaryContent} from './styles';
+import IconButton from '../../UI/IconButton/IconButton';
 
 const RoundResult = ({result, isFavorite, onFavoritesClick}) => {
   const favoritesButtonClickHandler = () => {
@@ -20,7 +20,8 @@ const RoundResult = ({result, isFavorite, onFavoritesClick}) => {
       <div>{result.points}</div>
       <div>{result.laps}</div>
       <ButtonWrapper>
-        <FavoritesButton
+        <IconButton
+          type='favorites'
           title="Add to favorites"
           onClick={favoritesButtonClickHandler}
           active={isFavorite}

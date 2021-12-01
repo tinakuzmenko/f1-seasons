@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FavoritesButtonWrapper = styled.button`
+export const IconButtonWrapper = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,11 +12,12 @@ export const FavoritesButtonWrapper = styled.button`
 
   &:hover {
     cursor: pointer;
+    opacity: 0.7;
   }
 
   svg {
     stroke: ${({theme}) => theme.primaryColor};
-    stroke-width: 3px;
-    fill: ${({active, theme}) => active ? theme.primaryColor : 'transparent'};
+    stroke-width: ${({type}) => type === 'favorites' && '3px'};
+    fill: ${({type, active, theme}) => type === 'remove' || active ? theme.primaryColor : 'transparent'};
   }
 `;
