@@ -1,8 +1,8 @@
-import {FavoritesHeaderWrapper} from './styles';
+import GridHeader from '../../UI/Grid/GridHeader/GridHeader';
 
 const FavoritesHeader = () => {
   return (
-    <FavoritesHeaderWrapper>
+    <GridHeader item={'favorites'}>
       <div>Code</div>
       <div>Driver</div>
       <div>Date of birth</div>
@@ -10,7 +10,7 @@ const FavoritesHeader = () => {
       <div>Perm. #</div>
       <div></div>
       <div></div>
-    </FavoritesHeaderWrapper>
+    </GridHeader>
   )
 }
 

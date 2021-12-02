@@ -1,8 +1,8 @@
-import {ResultsHeaderWrapper} from './styles';
+import GridHeader from '../../UI/Grid/GridHeader/GridHeader';
 
 const ResultsHeader = () => {
   return (
-    <ResultsHeaderWrapper>
+    <GridHeader item={'results'}>
       <div>#</div>
       <div>Code</div>
       <div>Driver</div>
@@ -11,7 +11,7 @@ const ResultsHeader = () => {
       <div>Points</div>
       <div>Laps</div>
       <div></div>
-    </ResultsHeaderWrapper>
+    </GridHeader>
   )
 }
 
