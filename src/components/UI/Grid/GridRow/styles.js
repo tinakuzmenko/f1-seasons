@@ -17,3 +17,18 @@ export const GridRowClickable = styled(GridRowWrapper)`
     border-color: ${({theme}) => theme.fontColor};
   }
 `;
+
+export const PrimaryContent = styled.div`
+  font-weight: bold;
+  font-size: 18px;
+`;
+
+export const SecondaryContent = styled.div`
+  color: ${({theme}) => theme.neutralColor};
+`;
+
+export const CenteredContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

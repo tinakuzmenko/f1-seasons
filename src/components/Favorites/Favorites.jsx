@@ -2,6 +2,7 @@ import Title from '../UI/Title/Title';
 import {useEffect, useState} from 'react';
 import GridLayout from '../UI/Grid/GridLayout/GridLayout';
 import FavoriteDriver from './FavoriteDriver/FavoriteDriver';
+import {CenteredContent} from '../UI/Grid/GridRow/styles';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
@@ -13,12 +14,20 @@ const Favorites = () => {
     setFavorites(storedFavorites);
   }, [])
 
+  const removeClickHandler = (removedDriver) => {
+    setFavorites((prevFavoriteDrivers) => {
+      const newFavoriteDrivers = prevFavoriteDrivers.filter((driver) => driver !== removedDriver);
+      localStorage.setItem('favorites', JSON.stringify(newFavoriteDrivers));
+      return newFavoriteDrivers;
+    });
+  }
+
   return (
     <>
       <Title title='Favorites'/>
-      {!favorites.length && <p>Your favorites list is empty.</p>}
+      {!favorites.length && <CenteredContent>Your favorites list is empty.</CenteredContent>}
       <GridLayout>
-        {favorites.map((favorite) => <FavoriteDriver key={favorite} driver={favorite}/>)}
+        {favorites.map((favorite) => <FavoriteDriver key={favorite} driver={favorite} onRemove={removeClickHandler}/>)}
       </GridLayout>
     </>
   )
