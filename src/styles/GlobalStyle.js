@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+    color: ${({theme}) => theme.primaryColor};
   }
 
   #root {

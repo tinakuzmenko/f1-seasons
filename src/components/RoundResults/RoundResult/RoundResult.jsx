@@ -21,8 +21,8 @@ const RoundResult = ({result, isFavorite, onFavoritesClick}) => {
       <div>{result.laps}</div>
       <CenteredContent>
         <IconButton
-          type='favorites'
           title="Add to favorites"
+          type={isFavorite ? 'favoritesActive' : 'favorites'}
           onClick={favoritesButtonClickHandler}
           active={isFavorite}
         />

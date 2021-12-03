@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+const getColor = (type, theme) => {
+  if (type === 'favorites') return 'transparent';
+  if (type === 'menu') return theme.backgroundColor;
+  else return theme.primaryColor;
+}
+
 export const IconButtonWrapper = styled.button`
   display: flex;
   align-items: center;
@@ -7,8 +13,6 @@ export const IconButtonWrapper = styled.button`
   background-color: transparent;
   border: none;
   padding: 0;
-  width: 16px;
-  height: auto;
 
   &:hover {
     cursor: pointer;
@@ -18,6 +22,6 @@ export const IconButtonWrapper = styled.button`
   svg {
     stroke: ${({theme}) => theme.primaryColor};
     stroke-width: ${({type}) => type === 'favorites' && '3px'};
-    fill: ${({type, active, theme}) => type === 'remove' || active ? theme.primaryColor : 'transparent'};
+    fill: ${({type, theme}) => getColor(type, theme)};
   }
 `;

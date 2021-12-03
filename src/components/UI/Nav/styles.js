@@ -7,23 +7,51 @@ export const NavWrapper = styled.nav`
 `;
 
 export const NavInnerWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width: ${({theme}) => theme.md}) {
+    grid-template-columns: 1fr 1fr;
+
+    button {
+      display: none;
+    }
+  }
+`;
+
+export const NavTopBar = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const NavList = styled.ul`
-  display: flex;
-  gap: 3ch;
-  margin: 0;
-  padding: 0;
+  display: ${({active}) => active ? 'block' : 'none'};
+  margin: 0 auto;
+  padding: 20px 0;
   list-style: none;
+
+  li:not(:last-child) {
+    margin-bottom: 10px;
+  }
 
   a {
     color: ${({theme}) => theme.backgroundColor};
 
     &:hover {
       opacity: 0.7;
+    }
+  }
+
+  @media (min-width: ${({theme}) => theme.md}) {
+    display: flex;
+    gap: 3ch;
+    padding: 0;
+    margin-right: 0;
+
+    li:not(:last-child) {
+      margin: 0;
     }
   }
 `;
