@@ -3,9 +3,9 @@ import {GridRowWrapper} from './styles';
 const GridRow = (props) => {
   return (
     <GridRowWrapper
-      columns={props.columns}
       highlighted={props.highlighted}
       onClick={props.onClick}
+      type={props.type}
     >
       {props.children}
     </GridRowWrapper>

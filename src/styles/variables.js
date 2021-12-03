@@ -1,5 +1,6 @@
 export const sizes = {
   xs: '320px',
+  sm: '640px',
   md: '768px',
   xl: '960px',
 };

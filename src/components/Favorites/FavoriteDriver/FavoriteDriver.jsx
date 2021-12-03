@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import dayjs from 'dayjs';
-import {CenteredContent, PrimaryContent, SecondaryContent} from '../../UI/Grid/GridRow/styles';
+import {CenteredContent, GridTooltip, PrimaryContent, SecondaryContent} from '../../UI/Grid/GridRow/styles';
 import {getDriver} from '../../../api/getDriver';
 import GridRow from '../../UI/Grid/GridRow/GridRow';
 import IconButton from '../../UI/IconButton/IconButton';
@@ -19,12 +19,26 @@ const FavoriteDriver = ({driver, onRemove}) => {
   };
 
   return (
-    <GridRow columns={"1fr 3fr 3fr 3fr 1fr 1fr"}>
-      <SecondaryContent>{driverData.code}</SecondaryContent>
-      <PrimaryContent>{`${driverData.givenName} ${driverData.familyName}`}</PrimaryContent>
-      <div>{dayjs(driverData.dateOfBirth).format("DD MMM YYYY")}</div>
-      <div>{driverData.nationality}</div>
-      <div>{driverData.permanentNumber}</div>
+    <GridRow type={'favorites'}>
+      <PrimaryContent>
+        {`${driverData.givenName} ${driverData.familyName}`}
+      </PrimaryContent>
+      <SecondaryContent>
+        <GridTooltip>Code:</GridTooltip>
+        {driverData.code}
+      </SecondaryContent>
+      <div>
+        <GridTooltip>Date of birth:</GridTooltip>
+        {dayjs(driverData.dateOfBirth).format("DD MMM YYYY")}
+      </div>
+      <div>
+        <GridTooltip>Nationality:</GridTooltip>
+        {driverData.nationality}
+      </div>
+      <div>
+        <GridTooltip>Permanent number:</GridTooltip>
+        {driverData.permanentNumber}
+      </div>
       <CenteredContent>
         <IconButton type={'remove'} title={'Remove from favorites'} onClick={removeClickHandler}/>
       </CenteredContent>

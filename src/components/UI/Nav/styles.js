@@ -12,7 +12,7 @@ export const NavInnerWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media (min-width: ${({theme}) => theme.md}) {
+  @media (min-width: ${({theme}) => theme.sm}) {
     grid-template-columns: 1fr 1fr;
 
     button {
@@ -44,7 +44,7 @@ export const NavList = styled.ul`
     }
   }
 
-  @media (min-width: ${({theme}) => theme.md}) {
+  @media (min-width: ${({theme}) => theme.sm}) {
     display: flex;
     gap: 3ch;
     padding: 0;

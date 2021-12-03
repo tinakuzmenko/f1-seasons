@@ -10,7 +10,7 @@ const Round = ({round, season}) => {
 
   return (
     <GridRowClickable
-      columns={'auto 2fr 3fr'}
+      type={'round'}
       onClick={() => navigate(`/seasons/${season}/${round.round}`, {replace: true})}
     >
       <RoundDate date={round.date}/>

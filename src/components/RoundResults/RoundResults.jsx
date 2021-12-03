@@ -6,10 +6,12 @@ import Loader from '../UI/Loader/Loader';
 import RoundResult from './RoundResult/RoundResult';
 import GridLayout from '../UI/Grid/GridLayout/GridLayout';
 import ResultsHeader from './ResultsHeader/ResultsHeader';
+import {CenteredContent} from '../UI/Grid/GridRow/styles';
 
 const RoundResults = () => {
   const [raceData, setRaceData] = useState({});
   const [results, setResults] = useState([]);
+  const [isNotAvailable, setIsNotAvailable] = useState(false);
   const [favoriteDrivers, setFavoriteDrivers] = useState([]);
   const {seasonId, roundId} = useParams();
 
@@ -26,7 +28,10 @@ const RoundResults = () => {
 
   useEffect(() => {
     getRoundData(seasonId, roundId).then((response) => {
-      if (!response) return;
+      if (!response) {
+        setIsNotAvailable(true);
+        return;
+      }
 
       const sortedResults = [...response.Results].sort((a, b) => a.position - b.position);
 
@@ -52,24 +57,34 @@ const RoundResults = () => {
     });
   };
 
-  if (!results.length) return <Loader/>
+  if (isNotAvailable) return (
+    <>
+      <Title title={'...Oops!'}/>
+      <CenteredContent>
+        <p>No data is available for this round. Please, try again later.</p>
+      </CenteredContent>
+    </>
+  );
 
   return (
     <>
       <Title title={raceData.raceName}/>
-      <GridLayout>
-        <ResultsHeader/>
-        {results.map((result) => {
-          return (
-            <RoundResult
-              key={result.position}
-              result={result}
-              isFavorite={getIsFavorite(result)}
-              onFavoritesClick={favoritesClickHandler}
-            />
-          )
-        })}
-      </GridLayout>
+      {!results.length && <Loader/>}
+      {results.length > 0 &&
+        <GridLayout>
+          <ResultsHeader/>
+          {results.map((result) => {
+            return (
+              <RoundResult
+                key={result.position}
+                result={result}
+                isFavorite={getIsFavorite(result)}
+                onFavoritesClick={favoritesClickHandler}
+              />
+            )
+          })}
+        </GridLayout>
+      }
     </>
   );
 }

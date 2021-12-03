@@ -6,9 +6,16 @@ export const FooterWrapper = styled.footer`
 `;
 
 export const FooterLayout = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  row-gap: 10px;
+
+  @media (min-width: ${({theme}) => theme.md}) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 export const FooterCopyright = styled.div`

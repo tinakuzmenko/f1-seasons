@@ -3,8 +3,8 @@ import GridHeader from '../../UI/Grid/GridHeader/GridHeader';
 const FavoritesHeader = () => {
   return (
     <GridHeader item={'favorites'}>
-      <div>Code</div>
       <div>Driver</div>
+      <div>Code</div>
       <div>Date of birth</div>
       <div>Nationality</div>
       <div>Perm. #</div>

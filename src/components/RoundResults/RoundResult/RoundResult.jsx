@@ -1,5 +1,5 @@
 import GridRow from '../../UI/Grid/GridRow/GridRow';
-import {CenteredContent, PrimaryContent, SecondaryContent} from '../../UI/Grid/GridRow/styles';
+import {CenteredContent, GridTooltip, PrimaryContent, SecondaryContent} from '../../UI/Grid/GridRow/styles';
 import IconButton from '../../UI/IconButton/IconButton';
 
 const RoundResult = ({result, isFavorite, onFavoritesClick}) => {
@@ -9,16 +9,37 @@ const RoundResult = ({result, isFavorite, onFavoritesClick}) => {
 
   return (
     <GridRow
-      columns={'1fr 1fr 5fr 4fr 4fr 2fr 2fr 1fr'}
+      type={'result'}
       highlighted={result.position <= 3}
     >
-      <PrimaryContent>{result.position}</PrimaryContent>
-      <SecondaryContent>{result.Driver.code}</SecondaryContent>
-      <div>{`${result.Driver.givenName} ${result.Driver.familyName}`}</div>
-      <div>{result.Constructor.name}</div>
-      <SecondaryContent>{result.Time ? result.Time.time : result.status}</SecondaryContent>
-      <div>{result.points}</div>
-      <div>{result.laps}</div>
+      <PrimaryContent>
+        <GridTooltip>#</GridTooltip>
+        {result.position}
+      </PrimaryContent>
+      <SecondaryContent>
+        <GridTooltip>Code:</GridTooltip>
+        {result.Driver.code}
+      </SecondaryContent>
+      <div>
+        <GridTooltip>Driver:</GridTooltip>
+        {`${result.Driver.givenName} ${result.Driver.familyName}`}
+      </div>
+      <div>
+        <GridTooltip>Team:</GridTooltip>
+        {result.Constructor.name}
+      </div>
+      <SecondaryContent>
+        <GridTooltip>Time:</GridTooltip>
+        {result.Time ? result.Time.time : result.status}
+      </SecondaryContent>
+      <div>
+        <GridTooltip>Points:</GridTooltip>
+        {result.points}
+      </div>
+      <div>
+        <GridTooltip>Laps:</GridTooltip>
+        {result.laps}
+      </div>
       <CenteredContent>
         <IconButton
           title="Add to favorites"

@@ -5,13 +5,16 @@ import linkedin from '../../../images/linkedin.svg';
 import Container from '../Container/Container';
 import Logo from '../Logo/Logo';
 import SocialIcon from '../SocialIcon/SocialIcon';
+import {Link} from 'react-router-dom';
 
 const Footer = () => {
   return (
     <FooterWrapper>
       <Container>
         <FooterLayout>
-          <Logo src={logo} size='70'/>
+          <Link to="/">
+            <Logo src={logo} size='70'/>
+          </Link>
           <FooterCopyright>
             <p>&copy; Design & code by Tina Kuzmenko, 2021.</p>
           </FooterCopyright>

@@ -5,5 +5,13 @@ export const GridLayoutWrapper = styled.ul`
   padding: 0;
   margin: 0;
   display: grid;
-  row-gap: 5px;
+  grid-gap: 5px;
+
+  @media (min-width: ${({theme}) => theme.sm}) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: ${({theme}) => theme.md}) {
+    grid-template-columns: 1fr;
+  }
 `;
