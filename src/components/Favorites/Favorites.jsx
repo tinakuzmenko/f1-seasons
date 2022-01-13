@@ -1,36 +1,34 @@
-import Title from '../UI/Title/Title';
 import {useEffect, useState} from 'react';
+import {getFromStorageData, setToStorageData} from '../../utilities/localStorage';
 import {CenteredContent} from '../UI/Grid/GridRow/styles';
+import Title from '../UI/Title/Title';
 import GridLayout from '../UI/Grid/GridLayout/GridLayout';
 import FavoriteDriver from './FavoriteDriver/FavoriteDriver';
 import FavoritesHeader from './FavoritesHeader/FavoritesHeader';
+import FavoritesList from './FavoritesList/FavoritesList';
+
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites'));
-    if (!storedFavorites) return;
-
-    setFavorites(storedFavorites);
+    setFavorites(getFromStorageData('favorites') ?? []);
   }, [])
 
+  useEffect(() => {
+    setToStorageData('favorites', favorites);
+  }, [favorites])
+
   const removeClickHandler = (removedDriver) => {
-    setFavorites((prevFavoriteDrivers) => {
-      const newFavoriteDrivers = prevFavoriteDrivers.filter((driver) => driver !== removedDriver);
-      localStorage.setItem('favorites', JSON.stringify(newFavoriteDrivers));
-      return newFavoriteDrivers;
-    });
+    setFavorites((prevFavoriteDrivers) => prevFavoriteDrivers.filter((driver) => driver !== removedDriver));
   }
 
   return (
     <>
       <Title title='Favorites'/>
-      {!favorites.length && <CenteredContent>Your favorites list is empty.</CenteredContent>}
-      <GridLayout>
-        <FavoritesHeader/>
-        {favorites.map((favorite) => <FavoriteDriver key={favorite} driver={favorite} onRemove={removeClickHandler}/>)}
-      </GridLayout>
+      {!favorites.length
+        ? <CenteredContent>Your favorites list is empty.</CenteredContent>
+        : <FavoritesList favorites={favorites} onRemove={removeClickHandler}/>}
     </>
   )
 }

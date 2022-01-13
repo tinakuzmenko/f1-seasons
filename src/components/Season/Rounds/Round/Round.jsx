@@ -1,8 +1,8 @@
 import {RoundRace} from './styles';
+import {GridRowClickable} from '../../../UI/Grid/GridRow/styles';
 import {useNavigate} from 'react-router-dom';
 import RoundDate from './RoundDate/RoundDate';
 import RoundLocation from './RoundLocation/RoundLocation';
-import {GridRowClickable} from '../../../UI/Grid/GridRow/styles';
 
 const Round = ({round, season}) => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const Round = ({round, season}) => {
 
   return (
     <GridRowClickable
-      type={'round'}
+      type='round'
       onClick={() => navigate(`/seasons/${season}/${round.round}`, {replace: true})}
     >
       <RoundDate date={round.date}/>

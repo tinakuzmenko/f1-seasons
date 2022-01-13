@@ -2,14 +2,13 @@ import GridHeader from '../../UI/Grid/GridHeader/GridHeader';
 
 const FavoritesHeader = () => {
   return (
-    <GridHeader item={'favorites'}>
-      <div>Driver</div>
-      <div>Code</div>
-      <div>Date of birth</div>
-      <div>Nationality</div>
-      <div>Perm. #</div>
-      <div></div>
-      <div></div>
+    <GridHeader item='favorites'>
+      <div title="Driver's name">Driver</div>
+      <div title="Driver's code">Code</div>
+      <div title="Driver's date of birth">Date of birth</div>
+      <div title="Driver's nationality">Nationality</div>
+      <div title="Driver's permanent number">Perm. #</div>
+      <div title="Remove from favorites"></div>
     </GridHeader>
   )
 }
