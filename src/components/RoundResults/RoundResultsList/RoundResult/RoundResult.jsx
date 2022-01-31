@@ -9,7 +9,7 @@ const RoundResult = ({result, isFavorite, onFavoritesClick}) => {
 
   return (
     <GridRow
-      type={'result'}
+      type='result'
       highlighted={result.position <= 3}
     >
       <PrimaryContent>
@@ -43,7 +43,7 @@ const RoundResult = ({result, isFavorite, onFavoritesClick}) => {
       <CenteredContent>
         <IconButton
           title="Add to favorites"
-          type={isFavorite ? 'favoritesActive' : 'favorites'}
+          type='favorites'
           onClick={favoritesButtonClickHandler}
           active={isFavorite}
         />

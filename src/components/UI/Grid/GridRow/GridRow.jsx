@@ -1,15 +1,7 @@
 import {GridRowWrapper} from './styles';
 
-const GridRow = (props) => {
-  return (
-    <GridRowWrapper
-      highlighted={props.highlighted}
-      onClick={props.onClick}
-      type={props.type}
-    >
-      {props.children}
-    </GridRowWrapper>
-  )
+const GridRow = ({highlighted, onClick, type, children}) => {
+  return <GridRowWrapper highlighted={highlighted} onClick={onClick} type={type}>{children}</GridRowWrapper>
 }
 
 export default GridRow;
