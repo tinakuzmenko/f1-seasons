@@ -8,6 +8,7 @@ import Main from './components/UI/Main/Main';
 import Favorites from './components/Favorites/Favorites';
 import Season from './components/Season/Season';
 import Round from './components/RoundResults/RoundResults';
+import NotFound from './components/UI/NotFound/NotFound';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="seasons/:seasonId" element={<Season/>}/>
           <Route path="seasons/:seasonId/:roundId" element={<Round/>}/>
           <Route path="favorites" element={<Favorites/>}/>
+          <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Main>
       <Footer/>

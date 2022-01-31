@@ -1,11 +1,11 @@
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {getRoundData} from '../../api/getRoundData';
-import Title from '../UI/SectionTitle/SectionTitle';
 import {CenteredContent} from '../UI/Grid/GridRow/styles';
 import {getFromStorageData, setToStorageData} from '../../utilities/localStorage';
 import RoundResultsList from './RoundResultsList/RoundResultsList';
 import GridLayout from '../UI/Grid/GridLayout/GridLayout';
+import SectionTitle from '../UI/SectionTitle/SectionTitle';
 
 const RoundResults = () => {
   const [raceData, setRaceData] = useState({});
@@ -53,8 +53,13 @@ const RoundResults = () => {
 
   return (
     <>
-      <Title title={title}/>
+      <SectionTitle>
+        <h2>{title}</h2>
+      </SectionTitle>
       <GridLayout>
+        <CenteredContent>
+          <Link to={"/seasons/" + seasonId}>{`<< Back to season ${seasonId}`}</Link>
+        </CenteredContent>
         {isNotAvailable
           ? <CenteredContent><p>No data is available for this round. Please, try again later.</p></CenteredContent>
           : <RoundResultsList onFavoritesClick={favoritesClickHandler} results={results} favorites={favoriteDrivers}/>

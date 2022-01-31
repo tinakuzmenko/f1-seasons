@@ -8,7 +8,7 @@ const Round = ({round, season}) => {
   const navigate = useNavigate();
   const location = round.Circuit.Location;
 
-  const rowClickHandler = () => navigate(`/seasons/${season}/${round.round}`, {replace: true});
+  const rowClickHandler = () => navigate(`/seasons/${season}/${round.round}`);
 
   return (
     <GridRowClickable

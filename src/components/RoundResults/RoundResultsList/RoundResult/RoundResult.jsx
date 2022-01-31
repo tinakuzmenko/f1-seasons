@@ -18,7 +18,7 @@ const RoundResult = ({result, isFavorite, onFavoritesClick}) => {
       </PrimaryContent>
       <SecondaryContent>
         <GridTooltip>Code:</GridTooltip>
-        {result.Driver.code}
+        {result.Driver.code || 'n/a'}
       </SecondaryContent>
       <div>
         <GridTooltip>Driver:</GridTooltip>

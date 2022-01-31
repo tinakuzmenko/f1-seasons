@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react';
 import {getFromStorageData, setToStorageData} from '../../utilities/localStorage';
 import {CenteredContent} from '../UI/Grid/GridRow/styles';
-import Title from '../UI/SectionTitle/SectionTitle';
 import FavoritesList from './FavoritesList/FavoritesList';
 import GridLayout from '../UI/Grid/GridLayout/GridLayout';
+import SectionTitle from '../UI/SectionTitle/SectionTitle';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
@@ -22,7 +22,9 @@ const Favorites = () => {
 
   return (
     <>
-      <Title title='Favorites'/>
+      <SectionTitle>
+        <h2>Favorites</h2>
+      </SectionTitle>
       <GridLayout>
         {
           !favorites.length
