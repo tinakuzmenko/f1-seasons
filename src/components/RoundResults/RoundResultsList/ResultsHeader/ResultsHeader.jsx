@@ -9,7 +9,7 @@ const ResultsHeader = () => (
     <div>Time</div>
     <div>Points</div>
     <div>Laps</div>
-    <div></div>
+    <div />
   </GridHeader>
 );
 
