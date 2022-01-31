@@ -6,14 +6,6 @@ const Logo = ({
   height,
   alt = 'F1 Seasons App logo',
   title = 'F1 Seasons App',
-}) => (
-  <LogoWrapper
-    src={src}
-    width={width}
-    height={height}
-    alt={alt}
-    title={title}
-  />
-);
+}) => <LogoWrapper src={src} width={width} alt={alt} title={title} />;
 
 export default Logo;

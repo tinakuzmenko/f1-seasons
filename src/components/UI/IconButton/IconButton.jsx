@@ -13,6 +13,8 @@ const IconButton = ({ type, active, onClick }) => {
         return <RemoveIcon />;
       case 'menu':
         return !active ? <MenuOpen /> : <MenuClose />;
+      default:
+        return;
     }
   };
 
