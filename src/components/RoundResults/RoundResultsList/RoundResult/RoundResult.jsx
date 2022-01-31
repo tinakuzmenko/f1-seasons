@@ -1,10 +1,10 @@
-import GridRow from '../../UI/Grid/GridRow/GridRow';
-import {CenteredContent, GridTooltip, PrimaryContent, SecondaryContent} from '../../UI/Grid/GridRow/styles';
-import IconButton from '../../UI/IconButton/IconButton';
+import GridRow from '../../../UI/Grid/GridRow/GridRow';
+import {CenteredContent, GridTooltip, PrimaryContent, SecondaryContent} from '../../../UI/Grid/GridRow/styles';
+import IconButton from '../../../UI/IconButton/IconButton';
 
 const RoundResult = ({result, isFavorite, onFavoritesClick}) => {
   const favoritesButtonClickHandler = () => {
-    onFavoritesClick(result.Driver.driverId, !isFavorite);
+    onFavoritesClick(result.Driver.driverId);
   };
 
   return (

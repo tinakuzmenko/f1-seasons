@@ -1,4 +1,4 @@
-import GridHeader from '../../UI/Grid/GridHeader/GridHeader';
+import GridHeader from '../../../UI/Grid/GridHeader/GridHeader';
 
 const ResultsHeader = () => {
   return (

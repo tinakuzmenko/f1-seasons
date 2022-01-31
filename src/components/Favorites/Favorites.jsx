@@ -2,9 +2,6 @@ import {useEffect, useState} from 'react';
 import {getFromStorageData, setToStorageData} from '../../utilities/localStorage';
 import {CenteredContent} from '../UI/Grid/GridRow/styles';
 import Title from '../UI/Title/Title';
-import GridLayout from '../UI/Grid/GridLayout/GridLayout';
-import FavoriteDriver from './FavoriteDriver/FavoriteDriver';
-import FavoritesHeader from './FavoritesHeader/FavoritesHeader';
 import FavoritesList from './FavoritesList/FavoritesList';
 
 

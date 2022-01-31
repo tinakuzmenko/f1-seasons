@@ -19,7 +19,7 @@ const Nav = () => {
         <NavInnerWrapper>
           <NavTopBar>
             <Link to="/">
-              <Logo src={img} size='70'/>
+              <Logo src={img} width='70' height='30'/>
             </Link>
             <IconButton type={'menu'} active={active} onClick={menuClickHandler}/>
           </NavTopBar>

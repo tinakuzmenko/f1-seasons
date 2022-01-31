@@ -1,5 +1,7 @@
 import {LogoWrapper} from './styles';
 
-const Logo = ({src, size}) => <LogoWrapper src={src} width={size} alt='F1 Seasons App logo' title='F1 Seasons App'/>
+const Logo = ({src, width, height, alt = "F1 Seasons App logo", title = "F1 Seasons App"}) => {
+  return <LogoWrapper src={src} width={width} height={height} alt={alt} title={title}/>;
+}
 
 export default Logo;

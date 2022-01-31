@@ -2,11 +2,10 @@ import {useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {getRoundData} from '../../api/getRoundData';
 import Title from '../UI/Title/Title';
-import Loader from '../UI/Loader/Loader';
-import RoundResult from './RoundResult/RoundResult';
-import GridLayout from '../UI/Grid/GridLayout/GridLayout';
-import ResultsHeader from './ResultsHeader/ResultsHeader';
 import {CenteredContent} from '../UI/Grid/GridRow/styles';
+import {getFromStorageData, setToStorageData} from '../../utilities/localStorage';
+import RoundResultsList from './RoundResultsList/RoundResultsList';
+import GridLayout from '../UI/Grid/GridLayout/GridLayout';
 
 const RoundResults = () => {
   const [raceData, setRaceData] = useState({});
@@ -16,14 +15,8 @@ const RoundResults = () => {
   const {seasonId, roundId} = useParams();
 
   useEffect(() => {
-    const storageItems = localStorage.getItem('favorites');
-
-    if (!storageItems) {
-      localStorage.setItem('favorites', JSON.stringify([]));
-      return;
-    }
-
-    setFavoriteDrivers(JSON.parse(storageItems));
+    const storageItems = getFromStorageData('favorites');
+    setFavoriteDrivers(storageItems ?? []);
   }, []);
 
   useEffect(() => {
@@ -40,51 +33,33 @@ const RoundResults = () => {
     });
   }, [seasonId, roundId]);
 
-  const getIsFavorite = (item) => favoriteDrivers.includes(item.Driver.driverId);
+  useEffect(() => {
+    setToStorageData('favorites', favoriteDrivers);
+  }, [favoriteDrivers]);
 
-  const favoritesClickHandler = (id, isFavorite) => {
+  const addFavoriteDriver = (drivers, id) => [...drivers, id];
+
+  const removeFavoriteDriver = (drivers, id) => drivers.filter((driver) => driver !== id);
+
+  const favoritesClickHandler = (id) => {
     setFavoriteDrivers((prevFavoriteDrivers) => {
-      if (isFavorite && prevFavoriteDrivers.includes(id)) return;
-      if (!isFavorite && !prevFavoriteDrivers.includes(id)) return;
-
-      const newFavoriteDrivers = isFavorite
-        ? [...prevFavoriteDrivers, id]
-        : prevFavoriteDrivers.filter((driver) => driver !== id);
-
-      localStorage.setItem('favorites', JSON.stringify(newFavoriteDrivers));
-
-      return newFavoriteDrivers;
+      return !prevFavoriteDrivers.includes(id)
+        ? addFavoriteDriver(prevFavoriteDrivers, id)
+        : removeFavoriteDriver(prevFavoriteDrivers, id);
     });
   };
 
-  if (isNotAvailable) return (
-    <>
-      <Title title={'...Oops!'}/>
-      <CenteredContent>
-        <p>No data is available for this round. Please, try again later.</p>
-      </CenteredContent>
-    </>
-  );
+  const title = isNotAvailable ? '...Oops!' : raceData.raceName;
 
   return (
     <>
-      <Title title={raceData.raceName}/>
-      {!results.length && <Loader/>}
-      {results.length > 0 &&
-        <GridLayout>
-          <ResultsHeader/>
-          {results.map((result) => {
-            return (
-              <RoundResult
-                key={result.position}
-                result={result}
-                isFavorite={getIsFavorite(result)}
-                onFavoritesClick={favoritesClickHandler}
-              />
-            )
-          })}
-        </GridLayout>
-      }
+      <Title title={title}/>
+      <GridLayout>
+        {isNotAvailable
+          ? <CenteredContent><p>No data is available for this round. Please, try again later.</p></CenteredContent>
+          : <RoundResultsList onFavoritesClick={favoritesClickHandler} results={results} favorites={favoriteDrivers}/>
+        }
+      </GridLayout>
     </>
   );
 }

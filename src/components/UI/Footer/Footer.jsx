@@ -13,7 +13,7 @@ const Footer = () => {
       <Container>
         <FooterLayout>
           <Link to="/">
-            <Logo src={logo} size='70'/>
+            <Logo src={logo} width='70' height='70'/>
           </Link>
           <FooterCopyright>
             <p>&copy; Design & code by Tina Kuzmenko, 2021.</p>
