@@ -1,7 +1,7 @@
 import {useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {getRoundData} from '../../api/getRoundData';
-import Title from '../UI/Title/Title';
+import Title from '../UI/SectionTitle/SectionTitle';
 import {CenteredContent} from '../UI/Grid/GridRow/styles';
 import {getFromStorageData, setToStorageData} from '../../utilities/localStorage';
 import RoundResultsList from './RoundResultsList/RoundResultsList';

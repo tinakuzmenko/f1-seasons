@@ -4,7 +4,7 @@ import github from '../../../images/github.svg';
 import linkedin from '../../../images/linkedin.svg';
 import Container from '../Container/Container';
 import Logo from '../Logo/Logo';
-import SocialIcon from '../SocialIcon/SocialIcon';
+import SocialLink from '../SocialLink/SocialLink';
 import {Link} from 'react-router-dom';
 
 const Footer = () => {
@@ -19,14 +19,14 @@ const Footer = () => {
             <p>&copy; Design & code by Tina Kuzmenko, 2021.</p>
           </FooterCopyright>
           <FooterSocial>
-            <SocialIcon
+            <SocialLink
               link={"https://github.com/tinakuzmenko/"}
-              img={github}
+              src={github}
               alt={"GitHub link"}
             />
-            <SocialIcon
+            <SocialLink
               link={"https://www.linkedin.com/in/tina-kuzmenko/"}
-              img={linkedin}
+              src={linkedin}
               alt={"LinkedIn link"}
             />
           </FooterSocial>

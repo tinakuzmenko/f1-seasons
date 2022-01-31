@@ -1,12 +1,14 @@
 import {FlagImage} from './styles';
 
-const Flag = ({country, size}) => {
+const Flag = ({country, width, height}) => {
+  const filename = country.toLowerCase().replace(' ', '-');
+
   return (
     <FlagImage
-      src={require(`../../../images/flags/${country.toLowerCase().replace(' ', '-')}.svg`).default || ''}
+      src={require(`../../../images/flags/${filename}.svg`).default || ''}
       alt={country}
-      width={size}
-      height={size}
+      width={width}
+      height={height}
     />
   )
 }

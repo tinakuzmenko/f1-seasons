@@ -4,12 +4,12 @@ import {getSeasons} from '../../api/getSeasons';
 import SeasonSelect from './SeasonSelect/SeasonSelect';
 import Rounds from './Rounds/Rounds';
 import Loader from '../UI/Loader/Loader';
-import Title from '../UI/Title/Title';
+import Title from '../UI/SectionTitle/SectionTitle';
 
 const Season = () => {
   const navigate = useNavigate();
   const {seasonId} = useParams();
-  const [selectedSeason, setSelectedSeason] = useState(seasonId || '2021');
+  const [selectedSeason, setSelectedSeason] = useState(seasonId || (new Date()).getFullYear());
   const [seasons, setSeasons] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Season = () => {
 
   return (
     <>
-      <Title title={'Selected season:'}>
+      <Title title='Selected season:'>
         <SeasonSelect onChange={seasonSelectChangeHandler} selected={selectedSeason} seasons={seasons}/>
       </Title>
       <Rounds season={selectedSeason}/>
