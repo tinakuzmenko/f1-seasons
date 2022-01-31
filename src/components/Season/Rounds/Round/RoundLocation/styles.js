@@ -7,6 +7,6 @@ export const RoundItemLocationWrapper = styled.div`
 `;
 
 export const RoundItemCountry = styled.div`
-  color: ${({theme}) => theme.neutralColor};
+  color: ${({ theme }) => theme.neutralColor};
   font-size: 14px;
 `;

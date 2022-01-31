@@ -7,7 +7,7 @@
  * @param key:string    A key, which should be used to get data
  * @returns {any}
  */
-export const getFromStorageData = (key) => {
+export const getFromStorageData = key => {
   if (!localStorage.getItem(key)) return;
   return JSON.parse(localStorage.getItem(key));
 };
@@ -19,4 +19,4 @@ export const getFromStorageData = (key) => {
  */
 export const setToStorageData = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
-}
+};

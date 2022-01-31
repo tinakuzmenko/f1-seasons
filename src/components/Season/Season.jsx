@@ -1,41 +1,49 @@
-import {useEffect, useState} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
-import {getSeasons} from '../../api/getSeasons';
-import SeasonSelect from './SeasonSelect/SeasonSelect';
-import Rounds from './Rounds/Rounds';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { getSeasons } from '../../api/getSeasons';
 import Loader from '../UI/Loader/Loader';
 import SectionTitle from '../UI/SectionTitle/SectionTitle';
 
+import Rounds from './Rounds/Rounds';
+import SeasonSelect from './SeasonSelect/SeasonSelect';
+
 const Season = () => {
-  const currentYear = (new Date()).getFullYear();
+  const currentYear = new Date().getFullYear();
 
   const navigate = useNavigate();
-  const {seasonId} = useParams();
+  const { seasonId } = useParams();
   const [selectedSeason, setSelectedSeason] = useState(seasonId || currentYear);
   const [seasons, setSeasons] = useState([]);
 
   useEffect(() => {
-    getSeasons().then((response) => setSeasons(response));
+    getSeasons().then(response => setSeasons(response));
   }, []);
 
   useEffect(() => {
     seasonId && setSelectedSeason(seasonId);
-  }, [seasonId])
+  }, [seasonId]);
 
-  const seasonSelectChangeHandler = (season) => {
+  const seasonSelectChangeHandler = season => {
     setSelectedSeason(season);
     navigate(`/seasons/${season}`);
   };
 
-  return !seasons.length
-    ? <Loader/>
-    : <>
+  return !seasons.length ? (
+    <Loader />
+  ) : (
+    <>
       <SectionTitle>
         <h2>Selected season:</h2>
-        <SeasonSelect onChange={seasonSelectChangeHandler} selected={selectedSeason} seasons={seasons}/>
+        <SeasonSelect
+          onChange={seasonSelectChangeHandler}
+          selected={selectedSeason}
+          seasons={seasons}
+        />
       </SectionTitle>
-      <Rounds season={selectedSeason}/>
+      <Rounds season={selectedSeason} />
     </>
-}
+  );
+};
 
 export default Season;

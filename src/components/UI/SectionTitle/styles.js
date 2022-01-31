@@ -12,7 +12,7 @@ export const SectionTitleWrapper = styled.div`
     margin: 0;
   }
 
-  @media (min-width: ${({theme}) => theme.md}) {
+  @media (min-width: ${({ theme }) => theme.md}) {
     grid-auto-flow: column;
   }
 `;
