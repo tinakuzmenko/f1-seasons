@@ -35,7 +35,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks'],
   rules: {
-    'import/no-unresolved': 'warn',
+    'import/no-unresolved': 'error',
     'import/no-unused-modules': 'error',
     'import/no-useless-path-segments': 'error',
     'import/order': [
@@ -196,7 +196,6 @@ module.exports = {
     'use-isnan': 'error',
     'valid-typeof': 'off',
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
 
     /* TODO: Delete when you will add TypeScript */
     '@typescript-eslint/explicit-module-boundary-types': 'off',
