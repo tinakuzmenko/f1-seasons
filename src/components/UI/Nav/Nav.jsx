@@ -24,7 +24,7 @@ const Nav = () => {
               <Logo src={img} width="70" height="30" />
             </Link>
             <IconButton
-              type={'menu'}
+              type="menu"
               active={active}
               onClick={menuClickHandler}
             />

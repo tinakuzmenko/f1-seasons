@@ -14,31 +14,35 @@ import {
   FooterWrapper,
 } from './styles';
 
-const Footer = () => (
-  <FooterWrapper>
-    <Container>
-      <FooterLayout>
-        <Link to="/">
-          <Logo src={logo} width="70" height="70" />
-        </Link>
-        <FooterCopyright>
-          <p>&copy; Design & code by Tina Kuzmenko, 2021.</p>
-        </FooterCopyright>
-        <FooterSocial>
-          <SocialLink
-            link="https://github.com/tinakuzmenko/"
-            src={github}
-            alt="GitHub link"
-          />
-          <SocialLink
-            link="https://www.linkedin.com/in/tina-kuzmenko/"
-            src={linkedin}
-            alt="LinkedIn link"
-          />
-        </FooterSocial>
-      </FooterLayout>
-    </Container>
-  </FooterWrapper>
-);
+const Footer = () => {
+  const copyright = `&copy; Design & code by Tina Kuzmenko, 2021 - ${new Date().getFullYear()}.`;
+
+  return (
+    <FooterWrapper>
+      <Container>
+        <FooterLayout>
+          <Link to="/">
+            <Logo src={logo} width="70" height="70" />
+          </Link>
+          <FooterCopyright>
+            <p>{copyright}</p>
+          </FooterCopyright>
+          <FooterSocial>
+            <SocialLink
+              link="https://github.com/tinakuzmenko/"
+              src={github}
+              alt="GitHub link"
+            />
+            <SocialLink
+              link="https://www.linkedin.com/in/tina-kuzmenko/"
+              src={linkedin}
+              alt="LinkedIn link"
+            />
+          </FooterSocial>
+        </FooterLayout>
+      </Container>
+    </FooterWrapper>
+  );
+};
 
 export default Footer;

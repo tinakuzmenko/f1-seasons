@@ -1,7 +1,7 @@
 import GridHeader from '../../../UI/Grid/GridHeader/GridHeader';
 
 const ResultsHeader = () => (
-  <GridHeader item={'results'}>
+  <GridHeader item="results">
     <div>#</div>
     <div>Code</div>
     <div>Driver</div>

@@ -199,7 +199,5 @@ module.exports = {
 
     /* TODO: Delete when you will add TypeScript */
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-
-
   },
 };
