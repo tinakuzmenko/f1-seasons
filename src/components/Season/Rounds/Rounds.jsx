@@ -1,26 +1,29 @@
-import {useEffect, useState} from 'react';
-import {getSeasonRounds} from '../../../api/getSeasonRounds';
-import Round from './Round/Round';
-import Loader from '../../UI/Loader/Loader';
+import { useEffect, useState } from 'react';
+
+import { getSeasonRounds } from '../../../api/getSeasonRounds';
 import GridLayout from '../../UI/Grid/GridLayout/GridLayout';
+import Loader from '../../UI/Loader/Loader';
 
-const Rounds = (props) => {
-    const [rounds, setRounds] = useState([]);
+import Round from './Round/Round';
 
-    useEffect(() => {
-      getSeasonRounds(props.season).then((response) => {
-        setRounds(response);
-      });
-    }, [props.season]);
+const Rounds = props => {
+  const [rounds, setRounds] = useState([]);
 
-    if (!rounds.length) return <Loader/>;
+  useEffect(() => {
+    getSeasonRounds(props.season).then(response => {
+      setRounds(response);
+    });
+  }, [props.season]);
 
-    return (
-      <GridLayout>
-        {rounds.map((round) => <Round key={round.round} season={props.season} round={round}/>)}
-      </GridLayout>
-    )
-  }
-;
+  if (!rounds.length) return <Loader />;
+
+  return (
+    <GridLayout>
+      {rounds.map(round => (
+        <Round key={round.round} season={props.season} round={round} />
+      ))}
+    </GridLayout>
+  );
+};
 
 export default Rounds;

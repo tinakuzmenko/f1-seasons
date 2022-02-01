@@ -1,7 +1,9 @@
-import {GridRowWrapper} from './styles';
+import { GridRowWrapper } from './styles';
 
-const GridRow = ({highlighted, onClick, type, children}) => {
-  return <GridRowWrapper highlighted={highlighted} onClick={onClick} type={type}>{children}</GridRowWrapper>
-}
+const GridRow = ({ highlighted, onClick, type, children }) => (
+  <GridRowWrapper highlighted={highlighted} onClick={onClick} type={type}>
+    {children}
+  </GridRowWrapper>
+);
 
 export default GridRow;

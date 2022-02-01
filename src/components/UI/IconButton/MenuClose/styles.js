@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
 export const MenuCloseWrapper = styled.svg`
-  fill: ${({theme}) => theme.backgroundColor};
+  fill: ${({ theme }) => theme.backgroundColor};
 `;

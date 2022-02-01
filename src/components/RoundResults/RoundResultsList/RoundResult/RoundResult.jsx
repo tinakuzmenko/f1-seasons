@@ -1,17 +1,19 @@
 import GridRow from '../../../UI/Grid/GridRow/GridRow';
-import {CenteredContent, GridTooltip, PrimaryContent, SecondaryContent} from '../../../UI/Grid/GridRow/styles';
+import {
+  CenteredContent,
+  GridTooltip,
+  PrimaryContent,
+  SecondaryContent,
+} from '../../../UI/Grid/GridRow/styles';
 import IconButton from '../../../UI/IconButton/IconButton';
 
-const RoundResult = ({result, isFavorite, onFavoritesClick}) => {
+const RoundResult = ({ result, isFavorite, onFavoritesClick }) => {
   const favoritesButtonClickHandler = () => {
     onFavoritesClick(result.Driver.driverId);
   };
 
   return (
-    <GridRow
-      type='result'
-      highlighted={result.position <= 3}
-    >
+    <GridRow type="result" highlighted={result.position <= 3}>
       <PrimaryContent>
         <GridTooltip>#</GridTooltip>
         {result.position}
@@ -43,13 +45,13 @@ const RoundResult = ({result, isFavorite, onFavoritesClick}) => {
       <CenteredContent>
         <IconButton
           title="Add to favorites"
-          type='favorites'
+          type="favorites"
           onClick={favoritesButtonClickHandler}
           active={isFavorite}
         />
       </CenteredContent>
     </GridRow>
-  )
-}
+  );
+};
 
 export default RoundResult;

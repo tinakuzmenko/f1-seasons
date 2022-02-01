@@ -4,16 +4,17 @@
 
 // dependencies
 import dayjs from 'dayjs';
-import {FIRST_SEASON_YEAR} from './constants';
+
+import { FIRST_SEASON_YEAR } from './constants';
 
 /**
  * A helper function to get the limit of seasons for the request
  * @returns number
  */
 export const getSeasonsLimit = () => {
-  const currentYear = (new Date()).getFullYear();
+  const currentYear = new Date().getFullYear();
   return currentYear - FIRST_SEASON_YEAR + 1;
-}
+};
 
 /**
  * A utility function to get a date in formatted human-readable

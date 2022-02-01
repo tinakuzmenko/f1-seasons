@@ -1,6 +1,6 @@
-import {FlagImage} from './styles';
+import { FlagImage } from './styles';
 
-const Flag = ({country, width, height}) => {
+const Flag = ({ country, width, height }) => {
   const filename = country.toLowerCase().replace(' ', '-');
 
   return (
@@ -10,7 +10,7 @@ const Flag = ({country, width, height}) => {
       width={width}
       height={height}
     />
-  )
-}
+  );
+};
 
 export default Flag;

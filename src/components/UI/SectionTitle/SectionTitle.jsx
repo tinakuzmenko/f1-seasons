@@ -1,5 +1,7 @@
-import {SectionTitleWrapper} from './styles';
+import { SectionTitleWrapper } from './styles';
 
-const SectionTitle = ({children}) => <SectionTitleWrapper>{children}</SectionTitleWrapper>;
+const SectionTitle = ({ children }) => (
+  <SectionTitleWrapper>{children}</SectionTitleWrapper>
+);
 
 export default SectionTitle;

@@ -1,3 +1,3 @@
-import {lightThemeColors, sizes} from './variables';
+import { lightThemeColors, sizes } from './variables';
 
-export const lightTheme = {...sizes, ...lightThemeColors};
+export const lightTheme = { ...sizes, ...lightThemeColors };

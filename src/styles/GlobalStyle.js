@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   html,
@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: ${({theme}) => theme.primaryColor};
+    color: ${({ theme }) => theme.primaryColor};
   }
 
   #root {
