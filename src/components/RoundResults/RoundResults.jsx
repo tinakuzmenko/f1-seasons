@@ -1,92 +1,89 @@
-import {useParams} from 'react-router-dom';
-import {useEffect, useState} from 'react';
-import {getRoundData} from '../../api/getRoundData';
-import Title from '../UI/Title/Title';
-import Loader from '../UI/Loader/Loader';
-import RoundResult from './RoundResult/RoundResult';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+
+import { getRoundData } from '../../api/getRoundData';
+import {
+  getFromStorageData,
+  setToStorageData,
+} from '../../utilities/localStorage';
 import GridLayout from '../UI/Grid/GridLayout/GridLayout';
-import ResultsHeader from './ResultsHeader/ResultsHeader';
-import {CenteredContent} from '../UI/Grid/GridRow/styles';
+import { CenteredContent } from '../UI/Grid/GridRow/styles';
+import SectionTitle from '../UI/SectionTitle/SectionTitle';
+
+import RoundResultsList from './RoundResultsList/RoundResultsList';
 
 const RoundResults = () => {
   const [raceData, setRaceData] = useState({});
   const [results, setResults] = useState([]);
   const [isNotAvailable, setIsNotAvailable] = useState(false);
   const [favoriteDrivers, setFavoriteDrivers] = useState([]);
-  const {seasonId, roundId} = useParams();
+  const { seasonId, roundId } = useParams();
 
   useEffect(() => {
-    const storageItems = localStorage.getItem('favorites');
-
-    if (!storageItems) {
-      localStorage.setItem('favorites', JSON.stringify([]));
-      return;
-    }
-
-    setFavoriteDrivers(JSON.parse(storageItems));
+    const storageItems = getFromStorageData('favorites');
+    setFavoriteDrivers(storageItems ?? []);
   }, []);
 
   useEffect(() => {
-    getRoundData(seasonId, roundId).then((response) => {
+    getRoundData(seasonId, roundId).then(response => {
       if (!response) {
         setIsNotAvailable(true);
         return;
       }
 
-      const sortedResults = [...response.Results].sort((a, b) => a.position - b.position);
+      const sortedResults = [...response.Results].sort(
+        (a, b) => a.position - b.position,
+      );
 
       setRaceData(response);
       setResults(sortedResults);
     });
   }, [seasonId, roundId]);
 
-  const getIsFavorite = (item) => favoriteDrivers.includes(item.Driver.driverId);
+  useEffect(() => {
+    setToStorageData('favorites', favoriteDrivers);
+  }, [favoriteDrivers]);
 
-  const favoritesClickHandler = (id, isFavorite) => {
-    setFavoriteDrivers((prevFavoriteDrivers) => {
-      if (isFavorite && prevFavoriteDrivers.includes(id)) return;
-      if (!isFavorite && !prevFavoriteDrivers.includes(id)) return;
+  const addFavoriteDriver = (drivers, id) => [...drivers, id];
 
-      const newFavoriteDrivers = isFavorite
-        ? [...prevFavoriteDrivers, id]
-        : prevFavoriteDrivers.filter((driver) => driver !== id);
+  const removeFavoriteDriver = (drivers, id) =>
+    drivers.filter(driver => driver !== id);
 
-      localStorage.setItem('favorites', JSON.stringify(newFavoriteDrivers));
-
-      return newFavoriteDrivers;
-    });
+  const favoritesClickHandler = id => {
+    setFavoriteDrivers(prevFavoriteDrivers =>
+      !prevFavoriteDrivers.includes(id)
+        ? addFavoriteDriver(prevFavoriteDrivers, id)
+        : removeFavoriteDriver(prevFavoriteDrivers, id),
+    );
   };
 
-  if (isNotAvailable) return (
-    <>
-      <Title title={'...Oops!'}/>
-      <CenteredContent>
-        <p>No data is available for this round. Please, try again later.</p>
-      </CenteredContent>
-    </>
-  );
+  const title = isNotAvailable ? '...Oops!' : raceData.raceName;
 
   return (
     <>
-      <Title title={raceData.raceName}/>
-      {!results.length && <Loader/>}
-      {results.length > 0 &&
-        <GridLayout>
-          <ResultsHeader/>
-          {results.map((result) => {
-            return (
-              <RoundResult
-                key={result.position}
-                result={result}
-                isFavorite={getIsFavorite(result)}
-                onFavoritesClick={favoritesClickHandler}
-              />
-            )
-          })}
-        </GridLayout>
-      }
+      <SectionTitle>
+        <h2>{title}</h2>
+      </SectionTitle>
+      <GridLayout>
+        <CenteredContent>
+          <Link
+            to={`/seasons/${seasonId}`}
+          >{`<< Back to season ${seasonId}`}</Link>
+        </CenteredContent>
+        {isNotAvailable ? (
+          <CenteredContent>
+            <p>No data is available for this round. Please, try again later.</p>
+          </CenteredContent>
+        ) : (
+          <RoundResultsList
+            onFavoritesClick={favoritesClickHandler}
+            results={results}
+            favorites={favoriteDrivers}
+          />
+        )}
+      </GridLayout>
     </>
   );
-}
+};
 
 export default RoundResults;

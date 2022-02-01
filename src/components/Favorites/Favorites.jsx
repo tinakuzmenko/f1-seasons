@@ -1,38 +1,46 @@
-import Title from '../UI/Title/Title';
-import {useEffect, useState} from 'react';
-import {CenteredContent} from '../UI/Grid/GridRow/styles';
+import { useEffect, useState } from 'react';
+
+import {
+  getFromStorageData,
+  setToStorageData,
+} from '../../utilities/localStorage';
 import GridLayout from '../UI/Grid/GridLayout/GridLayout';
-import FavoriteDriver from './FavoriteDriver/FavoriteDriver';
-import FavoritesHeader from './FavoritesHeader/FavoritesHeader';
+import { CenteredContent } from '../UI/Grid/GridRow/styles';
+import SectionTitle from '../UI/SectionTitle/SectionTitle';
+
+import FavoritesList from './FavoritesList/FavoritesList';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites'));
-    if (!storedFavorites) return;
+    setFavorites(getFromStorageData('favorites') ?? []);
+  }, []);
 
-    setFavorites(storedFavorites);
-  }, [])
+  useEffect(() => {
+    setToStorageData('favorites', favorites);
+  }, [favorites]);
 
-  const removeClickHandler = (removedDriver) => {
-    setFavorites((prevFavoriteDrivers) => {
-      const newFavoriteDrivers = prevFavoriteDrivers.filter((driver) => driver !== removedDriver);
-      localStorage.setItem('favorites', JSON.stringify(newFavoriteDrivers));
-      return newFavoriteDrivers;
-    });
-  }
+  const removeClickHandler = removedDriver => {
+    setFavorites(prevFavoriteDrivers =>
+      prevFavoriteDrivers.filter(driver => driver !== removedDriver),
+    );
+  };
 
   return (
     <>
-      <Title title='Favorites'/>
-      {!favorites.length && <CenteredContent>Your favorites list is empty.</CenteredContent>}
+      <SectionTitle>
+        <h2>Favorites</h2>
+      </SectionTitle>
       <GridLayout>
-        <FavoritesHeader/>
-        {favorites.map((favorite) => <FavoriteDriver key={favorite} driver={favorite} onRemove={removeClickHandler}/>)}
+        {!favorites.length ? (
+          <CenteredContent>Your favorites list is empty.</CenteredContent>
+        ) : (
+          <FavoritesList favorites={favorites} onRemove={removeClickHandler} />
+        )}
       </GridLayout>
     </>
-  )
-}
+  );
+};
 
 export default Favorites;

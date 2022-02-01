@@ -1,21 +1,22 @@
-import {RoundRace} from './styles';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import { GridRowClickable } from '../../../UI/Grid/GridRow/styles';
+
 import RoundDate from './RoundDate/RoundDate';
 import RoundLocation from './RoundLocation/RoundLocation';
-import {GridRowClickable} from '../../../UI/Grid/GridRow/styles';
+import { RoundRace } from './styles';
 
-const Round = ({round, season}) => {
+const Round = ({ round, season }) => {
   const navigate = useNavigate();
   const location = round.Circuit.Location;
 
+  const rowClickHandler = () => navigate(`/seasons/${season}/${round.round}`);
+
   return (
-    <GridRowClickable
-      type={'round'}
-      onClick={() => navigate(`/seasons/${season}/${round.round}`, {replace: true})}
-    >
-      <RoundDate date={round.date}/>
+    <GridRowClickable type="round" onClick={rowClickHandler}>
+      <RoundDate date={round.date} />
       <RoundRace>{round.raceName}</RoundRace>
-      <RoundLocation location={location} circuit={round.Circuit}/>
+      <RoundLocation location={location} circuit={round.Circuit} />
     </GridRowClickable>
   );
 };

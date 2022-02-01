@@ -1,21 +1,31 @@
-import {IconButtonWrapper} from './styles';
 import FavoritesIcon from './FavoritesIcon/FavoritesIcon';
+import MenuClose from './MenuClose/MenuClose';
+import MenuOpen from './MenuOpen/MenuOpen';
 import RemoveIcon from './RemoveIcon/RemoveIcon';
-import MenuIcon from './MenuIcon/MenuIcon';
+import { IconButtonWrapper } from './styles';
 
-const IconButton = (props) => {
-  return (
-    <IconButtonWrapper
-      title={props.title}
-      onClick={props.onClick}
-      type={props.type}
-    >
-      {props.type === 'favorites' && <FavoritesIcon/>}
-      {props.type === 'favoritesActive' && <FavoritesIcon/>}
-      {props.type === 'remove' && <RemoveIcon/>}
-      {props.type === 'menu' && <MenuIcon active={props.active}/>}
-    </IconButtonWrapper>
-  );
-}
+/**
+ * A helper to get right SVG icon component
+ * @param type
+ * @param active
+ */
+const getIcon = (type, active) => {
+  switch (type) {
+    case 'favorites':
+      return <FavoritesIcon active={active} />;
+    case 'remove':
+      return <RemoveIcon />;
+    case 'menu':
+      return !active ? <MenuOpen /> : <MenuClose />;
+    default:
+      return;
+  }
+};
+
+const IconButton = ({ type, active, onClick }) => (
+  <IconButtonWrapper onClick={onClick}>
+    {getIcon(type, active)}
+  </IconButtonWrapper>
+);
 
 export default IconButton;

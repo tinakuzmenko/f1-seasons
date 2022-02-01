@@ -1,17 +1,19 @@
-import {useState} from 'react';
-import {Link, NavLink} from 'react-router-dom';
-import {NavInnerWrapper, NavList, NavTopBar, NavWrapper} from './styles';
+import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+
 import img from '../../../images/f1-seasons-logo.svg';
 import Container from '../Container/Container';
-import Logo from '../Logo/Logo';
 import IconButton from '../IconButton/IconButton';
+import Logo from '../Logo/Logo';
+
+import { NavInnerWrapper, NavList, NavTopBar, NavWrapper } from './styles';
 
 const Nav = () => {
   const [active, setActive] = useState(false);
 
   const menuClickHandler = () => {
-    setActive((prevActive) => !prevActive);
-  }
+    setActive(prevActive => !prevActive);
+  };
 
   return (
     <NavWrapper>
@@ -19,9 +21,13 @@ const Nav = () => {
         <NavInnerWrapper>
           <NavTopBar>
             <Link to="/">
-              <Logo src={img} size='70'/>
+              <Logo src={img} width="70" height="30" />
             </Link>
-            <IconButton type={'menu'} active={active} onClick={menuClickHandler}/>
+            <IconButton
+              type="menu"
+              active={active}
+              onClick={menuClickHandler}
+            />
           </NavTopBar>
           <NavList active={active}>
             <li>
@@ -34,7 +40,7 @@ const Nav = () => {
         </NavInnerWrapper>
       </Container>
     </NavWrapper>
-  )
-}
+  );
+};
 
 export default Nav;

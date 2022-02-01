@@ -1,36 +1,49 @@
-import {useEffect, useState} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
-import {getSeasons} from '../../api/getSeasons';
-import SeasonSelect from './SeasonSelect/SeasonSelect';
-import Rounds from './Rounds/Rounds';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { getSeasons } from '../../api/getSeasons';
 import Loader from '../UI/Loader/Loader';
-import Title from '../UI/Title/Title';
+import SectionTitle from '../UI/SectionTitle/SectionTitle';
+
+import Rounds from './Rounds/Rounds';
+import SeasonSelect from './SeasonSelect/SeasonSelect';
 
 const Season = () => {
+  const currentYear = new Date().getFullYear();
+
   const navigate = useNavigate();
-  const {seasonId} = useParams();
-  const [selectedSeason, setSelectedSeason] = useState(seasonId || '2021');
+  const { seasonId } = useParams();
+  const [selectedSeason, setSelectedSeason] = useState(seasonId || currentYear);
   const [seasons, setSeasons] = useState([]);
 
   useEffect(() => {
-    getSeasons().then((response) => setSeasons(response));
+    getSeasons().then(response => setSeasons(response));
   }, []);
 
-  const seasonSelectChangeHandler = (season) => {
+  useEffect(() => {
+    seasonId && setSelectedSeason(seasonId);
+  }, [seasonId]);
+
+  const seasonSelectChangeHandler = season => {
     setSelectedSeason(season);
-    navigate(`/seasons/${season}`, {replace: true});
-  }
+    navigate(`/seasons/${season}`);
+  };
 
-  if (!seasons.length) return <Loader/>;
-
-  return (
+  return !seasons.length ? (
+    <Loader />
+  ) : (
     <>
-      <Title title={'Selected season:'}>
-        <SeasonSelect onChange={seasonSelectChangeHandler} selected={selectedSeason} seasons={seasons}/>
-      </Title>
-      <Rounds season={selectedSeason}/>
+      <SectionTitle>
+        <h2>Selected season:</h2>
+        <SeasonSelect
+          onChange={seasonSelectChangeHandler}
+          selected={selectedSeason}
+          seasons={seasons}
+        />
+      </SectionTitle>
+      <Rounds season={selectedSeason} />
     </>
-  )
-}
+  );
+};
 
 export default Season;
