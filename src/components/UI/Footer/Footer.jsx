@@ -15,7 +15,7 @@ import {
 } from './styles';
 
 const Footer = () => {
-  const copyright = `&copy; Design & code by Tina Kuzmenko, 2021 - ${new Date().getFullYear()}.`;
+  const copyright = `Design & code by Tina Kuzmenko, 2021 - ${new Date().getFullYear()}.`;
 
   return (
     <FooterWrapper>
@@ -25,7 +25,7 @@ const Footer = () => {
             <Logo src={logo} width="70" height="70" />
           </Link>
           <FooterCopyright>
-            <p>{copyright}</p>
+            <p>&copy; {copyright}</p>
           </FooterCopyright>
           <FooterSocial>
             <SocialLink
