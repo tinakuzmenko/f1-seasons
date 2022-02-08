@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { getDriver } from '../../../api/getDriver';
+import useRequest from '../../../hooks/useRequest';
+import { BASE_URL } from '../../../utilities/constants';
 import { getFormattedDate } from '../../../utilities/helpers';
 import GridRow from '../../UI/Grid/GridRow/GridRow';
 import {
@@ -14,11 +15,22 @@ import IconButton from '../../UI/IconButton/IconButton';
 const FavoriteDriver = ({ driver, onRemove }) => {
   const [driverData, setDriverData] = useState({});
 
-  useEffect(() => {
-    getDriver(driver).then(response => setDriverData(response));
-  }, []);
+  const { isLoading, error, sendRequest: getDriver } = useRequest();
 
-  if (!Object.keys(driverData).length) return <GridRow>Loading...</GridRow>;
+  useEffect(() => {
+    const storeData = response =>
+      setDriverData(response.MRData.DriverTable.Drivers[0]);
+
+    getDriver(
+      {
+        url: `${BASE_URL}/drivers/${driver}.json`,
+      },
+      storeData,
+    );
+  }, [getDriver]);
+
+  if (isLoading) return <GridRow>Loading...</GridRow>;
+  if (error) return <GridRow>{error}</GridRow>;
 
   const removeClickHandler = () => {
     onRemove(driver);
