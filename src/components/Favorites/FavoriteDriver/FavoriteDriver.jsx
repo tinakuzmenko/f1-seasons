@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import API from '../../../api/API';
 import useRequest from '../../../hooks/useRequest';
-import { BASE_URL } from '../../../utilities/constants';
 import { getFormattedDate } from '../../../utilities/helpers';
 import GridRow from '../../UI/Grid/GridRow/GridRow';
 import {
@@ -14,19 +14,16 @@ import IconButton from '../../UI/IconButton/IconButton';
 
 const FavoriteDriver = ({ driver, onRemove }) => {
   const [driverData, setDriverData] = useState({});
-
   const { isLoading, error, sendRequest: getDriver } = useRequest();
 
   useEffect(() => {
-    const storeData = response =>
-      setDriverData(response.MRData.DriverTable.Drivers[0]);
+    const api = new API();
 
-    getDriver(
-      {
-        url: `${BASE_URL}/drivers/${driver}.json`,
-      },
-      storeData,
-    );
+    const storeData = response => {
+      setDriverData(response.MRData.DriverTable.Drivers[0]);
+    };
+
+    getDriver({ url: api.driver(driver) }, storeData);
   }, [getDriver]);
 
   if (isLoading) return <GridRow>Loading...</GridRow>;

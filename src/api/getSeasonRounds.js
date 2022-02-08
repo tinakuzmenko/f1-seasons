@@ -1,5 +1,5 @@
 /**
- * API script to get list of season rounds from the server.
+ * URL script to get list of season rounds from the server.
  * @param season:number    a season year
  * @returns {Promise<[]>}
  */
