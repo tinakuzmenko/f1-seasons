@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react';
 
-import { getSeasonRounds } from '../../../api/getSeasonRounds';
+import useRequest from '../../../hooks/useRequest';
 import GridLayout from '../../UI/Grid/GridLayout/GridLayout';
+import { CenteredContent } from '../../UI/Grid/GridRow/styles';
 import Loader from '../../UI/Loader/Loader';
 
 import Round from './Round/Round';
 
 const Rounds = props => {
   const [rounds, setRounds] = useState([]);
+  const { isLoading, error, sendRequest: getSeasonRounds } = useRequest();
 
   useEffect(() => {
-    getSeasonRounds(props.season).then(response => {
-      setRounds(response);
-    });
-  }, [props.season]);
+    const storeRounds = response => setRounds(response.MRData.RaceTable.Races);
 
-  if (!rounds.length) return <Loader />;
+    getSeasonRounds({ endpoint: 'rounds', params: props.season }, storeRounds);
+  }, [getSeasonRounds, props.season]);
+
+  if (isLoading) return <Loader />;
+  if (error) return <CenteredContent>{error}</CenteredContent>;
 
   return (
     <GridLayout>

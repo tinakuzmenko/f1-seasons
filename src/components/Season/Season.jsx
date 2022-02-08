@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import API from '../../api/API';
 import useRequest from '../../hooks/useRequest';
 import { CenteredContent } from '../UI/Grid/GridRow/styles';
 import Loader from '../UI/Loader/Loader';
@@ -20,8 +19,6 @@ const Season = () => {
   const { isLoading, error, sendRequest: getSeasons } = useRequest();
 
   useEffect(() => {
-    const api = new API();
-
     const storeSeasons = response => {
       const sortedSeasons = [...response.MRData.SeasonTable.Seasons].sort(
         (a, b) => b.season - a.season,
@@ -30,7 +27,7 @@ const Season = () => {
       setSeasons(sortedSeasons);
     };
 
-    getSeasons({ url: api.seasons() }, storeSeasons);
+    getSeasons({ endpoint: 'seasons' }, storeSeasons);
   }, [getSeasons]);
 
   useEffect(() => {
