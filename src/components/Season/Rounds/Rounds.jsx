@@ -13,8 +13,11 @@ const Rounds = ({ season }) => {
 
   useEffect(() => {
     const storeRounds = response => setRounds(response.MRData.RaceTable.Races);
-
     getSeasonRounds({ endpoint: 'rounds', params: season }, storeRounds);
+
+    return () => {
+      setRounds([]);
+    };
   }, [getSeasonRounds, season]);
 
   if (isLoading) return <Loader />;
