@@ -7,15 +7,15 @@ import Loader from '../../UI/Loader/Loader';
 
 import Round from './Round/Round';
 
-const Rounds = props => {
+const Rounds = ({ season }) => {
   const [rounds, setRounds] = useState([]);
   const { isLoading, error, sendRequest: getSeasonRounds } = useRequest();
 
   useEffect(() => {
     const storeRounds = response => setRounds(response.MRData.RaceTable.Races);
 
-    getSeasonRounds({ endpoint: 'rounds', params: props.season }, storeRounds);
-  }, [getSeasonRounds, props.season]);
+    getSeasonRounds({ endpoint: 'rounds', params: season }, storeRounds);
+  }, [getSeasonRounds, season]);
 
   if (isLoading) return <Loader />;
   if (error) return <CenteredContent>{error}</CenteredContent>;
@@ -23,7 +23,7 @@ const Rounds = props => {
   return (
     <GridLayout>
       {rounds.map(round => (
-        <Round key={round.round} season={props.season} round={round} />
+        <Round key={round.round} season={season} round={round} />
       ))}
     </GridLayout>
   );
