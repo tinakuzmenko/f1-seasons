@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 
 import useRequest from '../../../hooks/useRequest';
 import { getFormattedDate } from '../../../utilities/helpers';
+import CenteredContent from '../../UI/CenteredContent/CenteredContent';
 import GridRow from '../../UI/Grid/GridRow/GridRow';
 import {
-  CenteredContent,
   GridTooltip,
   PrimaryContent,
   SecondaryContent,

@@ -6,8 +6,8 @@ import {
   getFromStorageData,
   setToStorageData,
 } from '../../utilities/localStorage';
+import CenteredContent from '../UI/CenteredContent/CenteredContent';
 import GridLayout from '../UI/Grid/GridLayout/GridLayout';
-import { CenteredContent } from '../UI/Grid/GridRow/styles';
 import Loader from '../UI/Loader/Loader';
 import SectionTitle from '../UI/SectionTitle/SectionTitle';
 

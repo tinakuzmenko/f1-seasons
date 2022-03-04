@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import useRequest from '../../../hooks/useRequest';
+import CenteredContent from '../../UI/CenteredContent/CenteredContent';
 import GridLayout from '../../UI/Grid/GridLayout/GridLayout';
-import { CenteredContent } from '../../UI/Grid/GridRow/styles';
 import Loader from '../../UI/Loader/Loader';
 
 import Round from './Round/Round';

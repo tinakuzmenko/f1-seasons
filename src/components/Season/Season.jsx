@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import useRequest from '../../hooks/useRequest';
-import { CenteredContent } from '../UI/Grid/GridRow/styles';
+import CenteredContent from '../UI/CenteredContent/CenteredContent';
 import Loader from '../UI/Loader/Loader';
 import SectionTitle from '../UI/SectionTitle/SectionTitle';
 
