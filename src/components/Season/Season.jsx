@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { getSeasons } from '../../api/getSeasons';
+import useRequest from '../../hooks/useRequest';
+import CenteredContent from '../UI/CenteredContent/CenteredContent';
 import Loader from '../UI/Loader/Loader';
 import SectionTitle from '../UI/SectionTitle/SectionTitle';
 
@@ -15,10 +16,19 @@ const Season = () => {
   const { seasonId } = useParams();
   const [selectedSeason, setSelectedSeason] = useState(seasonId || currentYear);
   const [seasons, setSeasons] = useState([]);
+  const { isLoading, error, sendRequest: getSeasons } = useRequest();
 
   useEffect(() => {
-    getSeasons().then(response => setSeasons(response));
-  }, []);
+    const storeSeasons = response => {
+      const sortedSeasons = [...response.MRData.SeasonTable.Seasons].sort(
+        (a, b) => b.season - a.season,
+      );
+
+      setSeasons(sortedSeasons);
+    };
+
+    getSeasons({ endpoint: 'seasons' }, storeSeasons);
+  }, [getSeasons]);
 
   useEffect(() => {
     seasonId && setSelectedSeason(seasonId);
@@ -29,9 +39,10 @@ const Season = () => {
     navigate(`/seasons/${season}`);
   };
 
-  return !seasons.length ? (
-    <Loader />
-  ) : (
+  if (isLoading) return <Loader />;
+  if (error) return <CenteredContent>{error}</CenteredContent>;
+
+  return (
     <>
       <SectionTitle>
         <h2>Selected season:</h2>

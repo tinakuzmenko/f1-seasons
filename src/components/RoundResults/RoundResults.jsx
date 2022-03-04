@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { getRoundData } from '../../api/getRoundData';
+import useRequest from '../../hooks/useRequest';
 import {
   getFromStorageData,
   setToStorageData,
 } from '../../utilities/localStorage';
+import CenteredContent from '../UI/CenteredContent/CenteredContent';
 import GridLayout from '../UI/Grid/GridLayout/GridLayout';
-import { CenteredContent } from '../UI/Grid/GridRow/styles';
+import Loader from '../UI/Loader/Loader';
 import SectionTitle from '../UI/SectionTitle/SectionTitle';
 
 import RoundResultsList from './RoundResultsList/RoundResultsList';
@@ -15,7 +16,7 @@ import RoundResultsList from './RoundResultsList/RoundResultsList';
 const RoundResults = () => {
   const [raceData, setRaceData] = useState({});
   const [results, setResults] = useState([]);
-  const [isNotAvailable, setIsNotAvailable] = useState(false);
+  const { isLoading, error, sendRequest: getRoundData } = useRequest();
   const [favoriteDrivers, setFavoriteDrivers] = useState([]);
   const { seasonId, roundId } = useParams();
 
@@ -25,19 +26,19 @@ const RoundResults = () => {
   }, []);
 
   useEffect(() => {
-    getRoundData(seasonId, roundId).then(response => {
-      if (!response) {
-        setIsNotAvailable(true);
-        return;
-      }
+    const storeRoundData = response => {
+      const sortedResults = [
+        ...response.MRData.RaceTable.Races[0].Results,
+      ].sort((a, b) => a.position - b.position);
 
-      const sortedResults = [...response.Results].sort(
-        (a, b) => a.position - b.position,
-      );
-
-      setRaceData(response);
+      setRaceData(response.MRData.RaceTable.Races[0]);
       setResults(sortedResults);
-    });
+    };
+
+    getRoundData(
+      { endpoint: 'round', params: [seasonId, roundId] },
+      storeRoundData,
+    );
   }, [seasonId, roundId]);
 
   useEffect(() => {
@@ -57,7 +58,9 @@ const RoundResults = () => {
     );
   };
 
-  const title = isNotAvailable ? '...Oops!' : raceData.raceName;
+  const title = error ? '...Oops!' : raceData.raceName;
+
+  if (isLoading) return <Loader />;
 
   return (
     <>
@@ -70,7 +73,7 @@ const RoundResults = () => {
             to={`/seasons/${seasonId}`}
           >{`<< Back to season ${seasonId}`}</Link>
         </CenteredContent>
-        {isNotAvailable ? (
+        {error ? (
           <CenteredContent>
             <p>No data is available for this round. Please, try again later.</p>
           </CenteredContent>

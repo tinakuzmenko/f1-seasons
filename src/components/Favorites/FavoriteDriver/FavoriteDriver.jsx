@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { getDriver } from '../../../api/getDriver';
+import useRequest from '../../../hooks/useRequest';
 import { getFormattedDate } from '../../../utilities/helpers';
+import CenteredContent from '../../UI/CenteredContent/CenteredContent';
 import GridRow from '../../UI/Grid/GridRow/GridRow';
 import {
-  CenteredContent,
   GridTooltip,
   PrimaryContent,
   SecondaryContent,
@@ -13,12 +13,18 @@ import IconButton from '../../UI/IconButton/IconButton';
 
 const FavoriteDriver = ({ driver, onRemove }) => {
   const [driverData, setDriverData] = useState({});
+  const { isLoading, error, sendRequest: getDriver } = useRequest();
 
   useEffect(() => {
-    getDriver(driver).then(response => setDriverData(response));
-  }, []);
+    const storeFavoriteDriver = response => {
+      setDriverData(response.MRData.DriverTable.Drivers[0]);
+    };
 
-  if (!Object.keys(driverData).length) return <GridRow>Loading...</GridRow>;
+    getDriver({ endpoint: 'driver', params: driver }, storeFavoriteDriver);
+  }, [getDriver]);
+
+  if (isLoading) return <GridRow>Loading...</GridRow>;
+  if (error) return <GridRow>{error}</GridRow>;
 
   const removeClickHandler = () => {
     onRemove(driver);
