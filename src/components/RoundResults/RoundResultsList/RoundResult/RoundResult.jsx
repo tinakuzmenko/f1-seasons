@@ -1,6 +1,6 @@
+import CenteredContent from '../../../UI/CenteredContent/CenteredContent';
 import GridRow from '../../../UI/Grid/GridRow/GridRow';
 import {
-  CenteredContent,
   GridTooltip,
   PrimaryContent,
   SecondaryContent,
