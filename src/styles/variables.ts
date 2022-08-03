@@ -1,11 +1,19 @@
-export const sizes = {
+export interface Sizes {
+  [key: string]: string;
+}
+
+export interface Colors {
+  [key: string]: string;
+}
+
+export const sizes: Sizes = {
   xs: '320px',
   sm: '640px',
   md: '768px',
   xl: '960px',
 };
 
-export const lightThemeColors = {
+export const lightThemeColors: Colors = {
   backgroundColor: '#ffffff',
   fontColor: '#15151e',
   primaryColor: '#e10600',

@@ -1,6 +1,8 @@
+import { FC, PropsWithChildren } from 'react';
+
 import { SectionTitleWrapper } from './styles';
 
-const SectionTitle = ({ children }) => (
+const SectionTitle: FC<PropsWithChildren> = ({ children }) => (
   <SectionTitleWrapper>{children}</SectionTitleWrapper>
 );
 
