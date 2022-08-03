@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import Favorites from './components/Favorites/Favorites';
@@ -10,6 +10,7 @@ import Nav from './components/UI/Nav/Nav';
 import NotFound from './components/UI/NotFound/NotFound';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { lightTheme } from './styles/lightTheme';
+import { CURRENT_YEAR } from './utilities/constants';
 
 const App = () => (
   <ThemeProvider theme={lightTheme}>
@@ -17,7 +18,10 @@ const App = () => (
     <Nav />
     <Main>
       <Routes>
-        <Route path="/" element={<Season />} />
+        <Route
+          path="/"
+          element={<Navigate replace to={`seasons/${CURRENT_YEAR}`} />}
+        />
         <Route path="seasons/:seasonId" element={<Season />} />
         <Route path="seasons/:seasonId/:roundId" element={<Round />} />
         <Route path="favorites" element={<Favorites />} />

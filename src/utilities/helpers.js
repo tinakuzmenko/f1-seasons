@@ -5,6 +5,8 @@
 // dependencies
 import dayjs from 'dayjs';
 
+import { CURRENT_YEAR, FIRST_SEASON_YEAR } from './constants';
+
 /**
  * A utility function to get a date in formatted human-readable
  * string representation
@@ -16,6 +18,12 @@ import dayjs from 'dayjs';
 export const getFormattedDate = (date, format) => dayjs(date).format(format);
 
 /**
+ * A helper function to get the limit of seasons for the request
+ * @returns number
+ */
+export const getSeasonsLimit = () => CURRENT_YEAR - FIRST_SEASON_YEAR + 1;
+
+/**
  * A utility function to get the endpoint link.
  * @param type:string     A string with the type of endpoint we need.
  *                        Possible values are: 'seasons', 'driver', 'rounds',
@@ -24,12 +32,7 @@ export const getFormattedDate = (date, format) => dayjs(date).format(format);
  * @returns string        A constructed link in string representation.
  */
 export const constructEndpoint = (type, ...params) => {
-  const FIRST_SEASON_YEAR = 1950;
   const BASE_URL = 'https://ergast.com/api/f1';
-
-  const currentYear = new Date().getFullYear();
-
-  const getSeasonsLimit = () => currentYear - FIRST_SEASON_YEAR + 1;
 
   const endpoints = {
     seasons: () => `${BASE_URL}/seasons.json?limit=${getSeasonsLimit()}`,

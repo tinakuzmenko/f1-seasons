@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import useRequest from '../../hooks/useRequest';
+import { CURRENT_YEAR } from '../../utilities/constants';
 import CenteredContent from '../UI/CenteredContent/CenteredContent';
 import Loader from '../UI/Loader/Loader';
 import SectionTitle from '../UI/SectionTitle/SectionTitle';
@@ -10,11 +11,11 @@ import Rounds from './Rounds/Rounds';
 import SeasonSelect from './SeasonSelect/SeasonSelect';
 
 const Season = () => {
-  const currentYear = new Date().getFullYear();
-
   const navigate = useNavigate();
   const { seasonId } = useParams();
-  const [selectedSeason, setSelectedSeason] = useState(seasonId || currentYear);
+  const [selectedSeason, setSelectedSeason] = useState(
+    seasonId || CURRENT_YEAR,
+  );
   const [seasons, setSeasons] = useState([]);
   const { isLoading, error, sendRequest: getSeasons } = useRequest();
 
