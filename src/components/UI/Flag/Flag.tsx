@@ -1,6 +1,14 @@
+import { FC } from 'react';
+
 import { FlagImage } from './styles';
 
-const Flag = ({ country, width, height }) => {
+interface FlagProps {
+  country: string;
+  width: number;
+  height: number;
+}
+
+const Flag: FC<FlagProps> = ({ country, width, height }) => {
   const filename = country.toLowerCase().replace(' ', '-');
 
   return (

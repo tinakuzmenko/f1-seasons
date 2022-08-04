@@ -11,7 +11,7 @@ import { NavInnerWrapper, NavList, NavTopBar, NavWrapper } from './styles';
 const Nav = () => {
   const [active, setActive] = useState(false);
 
-  const menuClickHandler = () => {
+  const menuClickHandler = (): void => {
     setActive(prevActive => !prevActive);
   };
 
@@ -21,7 +21,7 @@ const Nav = () => {
         <NavInnerWrapper>
           <NavTopBar>
             <Link to="/">
-              <Logo src={img} width="70" height="30" />
+              <Logo src={img} width={70} height={30} />
             </Link>
             <IconButton
               type="menu"

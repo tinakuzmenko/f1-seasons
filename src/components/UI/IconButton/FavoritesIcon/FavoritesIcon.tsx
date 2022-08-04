@@ -1,6 +1,18 @@
+import { FC } from 'react';
+
 import { FavoritesIconWrapper } from './styles';
 
-const FavoritesIcon = ({ active, width = 16, height = 16 }) => (
+interface FavoritesIconProps {
+  active: boolean;
+  width?: number;
+  height?: number;
+}
+
+const FavoritesIcon: FC<FavoritesIconProps> = ({
+  active,
+  width = 16,
+  height = 16,
+}) => (
   <FavoritesIconWrapper
     viewBox="0 0 24 24"
     strokeLinecap="round"

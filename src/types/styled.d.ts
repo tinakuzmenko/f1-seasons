@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components';
+import 'styled-components';
 
 import { Colors, Sizes } from '../styles/variables';
 

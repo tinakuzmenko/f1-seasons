@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 
 import { CenteredContentWrapper } from './styles';
 
-const CenteredContent = ({ children }) => (
+const CenteredContent: FC<PropsWithChildren> = ({ children }) => (
   <CenteredContentWrapper>{children}</CenteredContentWrapper>
 );
 

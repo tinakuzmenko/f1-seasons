@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import logo from '../../../images/f1-seasons-logo.svg';
@@ -14,7 +15,7 @@ import {
   FooterWrapper,
 } from './styles';
 
-const Footer = () => {
+const Footer: FC = () => {
   const copyright = `Design & code by Tina Kuzmenko, 2021 - ${new Date().getFullYear()}.`;
 
   return (
@@ -22,7 +23,7 @@ const Footer = () => {
       <Container>
         <FooterLayout>
           <Link to="/">
-            <Logo src={logo} width="70" height="70" />
+            <Logo src={logo} width={70} />
           </Link>
           <FooterCopyright>
             <p>&copy; {copyright}</p>

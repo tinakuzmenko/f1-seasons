@@ -1,10 +1,12 @@
+import { FC, PropsWithChildren } from 'react';
+
 import Container from '../Container/Container';
 
 import { MainWrapper } from './styles';
 
-const Main = props => (
+const Main: FC<PropsWithChildren> = ({ children }) => (
   <MainWrapper>
-    <Container>{props.children}</Container>
+    <Container>{children}</Container>
   </MainWrapper>
 );
 

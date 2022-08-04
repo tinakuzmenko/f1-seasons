@@ -1,3 +1,5 @@
+import { FC, MouseEventHandler } from 'react';
+
 import FavoritesIcon from './FavoritesIcon/FavoritesIcon';
 import MenuClose from './MenuClose/MenuClose';
 import MenuOpen from './MenuOpen/MenuOpen';
@@ -9,7 +11,7 @@ import { IconButtonWrapper } from './styles';
  * @param type
  * @param active
  */
-const getIcon = (type, active) => {
+const getIcon = (type: string, active: boolean) => {
   switch (type) {
     case 'favorites':
       return <FavoritesIcon active={active} />;
@@ -22,7 +24,13 @@ const getIcon = (type, active) => {
   }
 };
 
-const IconButton = ({ type, active, onClick }) => (
+interface IconButtonInterface {
+  type: string;
+  active: boolean;
+  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
+}
+
+const IconButton: FC<IconButtonInterface> = ({ type, active, onClick }) => (
   <IconButtonWrapper onClick={onClick}>
     {getIcon(type, active)}
   </IconButtonWrapper>

@@ -1,6 +1,13 @@
+import { FC } from 'react';
+
 import { MenuCloseWrapper } from './styles';
 
-const MenuClose = ({ width = 32, height = 32 }) => (
+interface MenuCloseProps {
+  width?: number;
+  height?: number;
+}
+
+const MenuClose: FC<MenuCloseProps> = ({ width = 32, height = 32 }) => (
   <MenuCloseWrapper
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 48 48"
