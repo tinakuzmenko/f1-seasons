@@ -7,7 +7,7 @@ const columns: { [key: string]: string } = {
 };
 
 interface GridRowWrapperProps {
-  highlighted: boolean;
+  highlighted?: boolean;
   type: string;
 }
 

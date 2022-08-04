@@ -1,7 +1,11 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import useRequest from '../../hooks/useRequest';
+import {
+  SeasonInterface,
+  TableSeasonInterface,
+} from '../../types/Season.interface';
 import { CURRENT_YEAR } from '../../utilities/constants';
 import CenteredContent from '../UI/CenteredContent/CenteredContent';
 import Loader from '../UI/Loader/Loader';
@@ -10,20 +14,20 @@ import SectionTitle from '../UI/SectionTitle/SectionTitle';
 import Rounds from './Rounds/Rounds';
 import SeasonSelect from './SeasonSelect/SeasonSelect';
 
-const Season = () => {
+const Season: FC = () => {
   const navigate = useNavigate();
   const { seasonId } = useParams();
   const [selectedSeason, setSelectedSeason] = useState(
-    seasonId || CURRENT_YEAR,
+    seasonId || CURRENT_YEAR.toString(),
   );
-  const [seasons, setSeasons] = useState([]);
+  const [seasons, setSeasons] = useState<TableSeasonInterface[]>([]);
   const { isLoading, error, sendRequest: getSeasons } = useRequest();
 
   useEffect(() => {
-    const storeSeasons = response => {
-      const sortedSeasons = [...response.MRData.SeasonTable.Seasons].sort(
-        (a, b) => b.season - a.season,
-      );
+    const storeSeasons = (response: SeasonInterface) => {
+      const sortedSeasons: TableSeasonInterface[] = [
+        ...response.MRData.SeasonTable.Seasons,
+      ].sort((a, b) => parseInt(b.season, 10) - parseInt(a.season, 10));
 
       setSeasons(sortedSeasons);
     };
@@ -35,7 +39,7 @@ const Season = () => {
     seasonId && setSelectedSeason(seasonId);
   }, [seasonId]);
 
-  const seasonSelectChangeHandler = season => {
+  const seasonSelectChangeHandler = (season: string) => {
     setSelectedSeason(season);
     navigate(`/seasons/${season}`);
   };
