@@ -1,8 +1,19 @@
+import { FC } from 'react';
+
+import {
+  CircuitInterface,
+  LocationInterface,
+} from '../../../../../types/Round.interface';
 import Flag from '../../../../UI/Flag/Flag';
 
 import { RoundItemCountry, RoundItemLocationWrapper } from './styles';
 
-const RoundLocation = ({ circuit, location }) => (
+interface RoundLocationProps {
+  circuit: CircuitInterface;
+  location: LocationInterface;
+}
+
+const RoundLocation: FC<RoundLocationProps> = ({ circuit, location }) => (
   <RoundItemLocationWrapper>
     <Flag country={location.country} width={40} height={40} />
     <div>

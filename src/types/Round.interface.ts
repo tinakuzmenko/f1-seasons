@@ -1,11 +1,11 @@
-interface LocationInterface {
+export interface LocationInterface {
   lat: string;
   long: string;
   locality: string;
   country: string;
 }
 
-interface CircuitInterface {
+export interface CircuitInterface {
   circuitId: string;
   url: string;
   circuitName: string;
