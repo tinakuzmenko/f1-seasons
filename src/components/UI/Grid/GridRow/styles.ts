@@ -8,7 +8,7 @@ const columns: { [key: string]: string } = {
 
 interface GridRowWrapperProps {
   highlighted?: boolean;
-  type: string;
+  type?: string;
 }
 
 export const GridRowWrapper = styled.li<GridRowWrapperProps>`
@@ -24,7 +24,7 @@ export const GridRowWrapper = styled.li<GridRowWrapperProps>`
   align-items: self-start;
 
   @media (min-width: ${({ theme }) => theme.sizes.md}) {
-    grid-template-columns: ${({ type }) => columns[type]};
+    grid-template-columns: ${({ type }) => columns[type as string]};
     column-gap: 20px;
     align-items: center;
   }

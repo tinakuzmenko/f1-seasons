@@ -11,7 +11,7 @@ import SectionTitle from '../UI/SectionTitle/SectionTitle';
 import FavoritesList from './FavoritesList/FavoritesList';
 
 const Favorites = () => {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState<string[]>([]);
 
   useEffect(() => {
     setFavorites(getFromStorageData('favorites') ?? []);
@@ -21,7 +21,7 @@ const Favorites = () => {
     setToStorageData('favorites', favorites);
   }, [favorites]);
 
-  const removeClickHandler = removedDriver => {
+  const removeClickHandler = (removedDriver: string) => {
     setFavorites(prevFavoriteDrivers =>
       prevFavoriteDrivers.filter(driver => driver !== removedDriver),
     );

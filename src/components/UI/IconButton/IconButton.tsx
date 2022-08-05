@@ -26,12 +26,16 @@ const getIcon = (type: string, active: boolean) => {
 
 interface IconButtonInterface {
   type: string;
-  active: boolean;
+  active?: boolean;
   title?: string;
   onClick: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-const IconButton: FC<IconButtonInterface> = ({ type, active, onClick }) => (
+const IconButton: FC<IconButtonInterface> = ({
+  type,
+  active = false,
+  onClick,
+}) => (
   <IconButtonWrapper onClick={onClick}>
     {getIcon(type, active)}
   </IconButtonWrapper>

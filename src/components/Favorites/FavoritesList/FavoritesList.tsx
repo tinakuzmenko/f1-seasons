@@ -1,7 +1,14 @@
+import { FC } from 'react';
+
 import FavoriteDriver from '../FavoriteDriver/FavoriteDriver';
 import FavoritesHeader from '../FavoritesHeader/FavoritesHeader';
 
-const FavoritesList = ({ favorites, onRemove }) => (
+interface FavoritesListProps {
+  favorites: string[];
+  onRemove: (id: string) => void;
+}
+
+const FavoritesList: FC<FavoritesListProps> = ({ favorites, onRemove }) => (
   <>
     <FavoritesHeader />
     {favorites.map(favorite => (
