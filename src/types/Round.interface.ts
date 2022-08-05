@@ -42,7 +42,7 @@ interface FastestLapInterface {
   };
 }
 
-interface ResultInterface {
+export interface ResultInterface {
   number: string;
   position: string;
   positionText: string;

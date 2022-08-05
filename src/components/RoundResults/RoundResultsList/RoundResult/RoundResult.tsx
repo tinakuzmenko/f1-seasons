@@ -1,3 +1,6 @@
+import { FC } from 'react';
+
+import { ResultInterface } from '../../../../types/Round.interface';
 import CenteredContent from '../../../UI/CenteredContent/CenteredContent';
 import GridRow from '../../../UI/Grid/GridRow/GridRow';
 import {
@@ -7,13 +10,25 @@ import {
 } from '../../../UI/Grid/GridRow/styles';
 import IconButton from '../../../UI/IconButton/IconButton';
 
-const RoundResult = ({ result, isFavorite, onFavoritesClick }) => {
+interface RoundResultProps {
+  result: ResultInterface;
+  isFavorite: boolean;
+  onFavoritesClick: (id: string) => void;
+}
+
+const RoundResult: FC<RoundResultProps> = ({
+  result,
+  isFavorite,
+  onFavoritesClick,
+}) => {
   const favoritesButtonClickHandler = () => {
     onFavoritesClick(result.Driver.driverId);
   };
 
+  const position = parseInt(result.position, 10);
+
   return (
-    <GridRow type="result" highlighted={result.position <= 3}>
+    <GridRow type="result" highlighted={position <= 3}>
       <PrimaryContent>
         <GridTooltip>#</GridTooltip>
         {result.position}

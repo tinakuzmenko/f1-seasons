@@ -3,6 +3,11 @@ import { Link, useParams } from 'react-router-dom';
 
 import useRequest from '../../hooks/useRequest';
 import {
+  RaceInterface,
+  ResultInterface,
+  RoundInterface,
+} from '../../types/Round.interface';
+import {
   getFromStorageData,
   setToStorageData,
 } from '../../utilities/localStorage';
@@ -14,10 +19,10 @@ import SectionTitle from '../UI/SectionTitle/SectionTitle';
 import RoundResultsList from './RoundResultsList/RoundResultsList';
 
 const RoundResults = () => {
-  const [raceData, setRaceData] = useState({});
-  const [results, setResults] = useState([]);
+  const [raceData, setRaceData] = useState<RaceInterface | null>(null);
+  const [results, setResults] = useState<ResultInterface[]>([]);
   const { isLoading, error, sendRequest: getRoundData } = useRequest();
-  const [favoriteDrivers, setFavoriteDrivers] = useState([]);
+  const [favoriteDrivers, setFavoriteDrivers] = useState<string[]>([]);
   const { seasonId, roundId } = useParams();
 
   useEffect(() => {
@@ -26,10 +31,10 @@ const RoundResults = () => {
   }, []);
 
   useEffect(() => {
-    const storeRoundData = response => {
+    const storeRoundData = (response: RoundInterface) => {
       const sortedResults = [
         ...response.MRData.RaceTable.Races[0].Results,
-      ].sort((a, b) => a.position - b.position);
+      ].sort((a, b) => parseInt(a.position, 10) - parseInt(b.position, 10));
 
       setRaceData(response.MRData.RaceTable.Races[0]);
       setResults(sortedResults);
@@ -45,12 +50,12 @@ const RoundResults = () => {
     setToStorageData('favorites', favoriteDrivers);
   }, [favoriteDrivers]);
 
-  const addFavoriteDriver = (drivers, id) => [...drivers, id];
+  const addFavoriteDriver = (drivers: string[], id: string) => [...drivers, id];
 
-  const removeFavoriteDriver = (drivers, id) =>
+  const removeFavoriteDriver = (drivers: string[], id: string) =>
     drivers.filter(driver => driver !== id);
 
-  const favoritesClickHandler = id => {
+  const favoritesClickHandler = (id: string) => {
     setFavoriteDrivers(prevFavoriteDrivers =>
       !prevFavoriteDrivers.includes(id)
         ? addFavoriteDriver(prevFavoriteDrivers, id)
@@ -58,7 +63,7 @@ const RoundResults = () => {
     );
   };
 
-  const title = error ? '...Oops!' : raceData.raceName;
+  const title = error || !raceData ? '...Oops!' : raceData.raceName;
 
   if (isLoading) return <Loader />;
 

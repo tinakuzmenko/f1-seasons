@@ -27,6 +27,7 @@ const getIcon = (type: string, active: boolean) => {
 interface IconButtonInterface {
   type: string;
   active: boolean;
+  title?: string;
   onClick: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 

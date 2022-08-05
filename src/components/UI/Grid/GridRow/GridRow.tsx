@@ -4,7 +4,7 @@ import { GridRowWrapper } from './styles';
 
 interface GridRowProps extends PropsWithChildren {
   highlighted: boolean;
-  onClick: MouseEventHandler<HTMLLIElement>;
+  onClick?: MouseEventHandler<HTMLLIElement>;
   type: string;
 }
 

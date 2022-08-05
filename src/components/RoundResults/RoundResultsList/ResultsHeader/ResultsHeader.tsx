@@ -1,6 +1,8 @@
+import { FC } from 'react';
+
 import GridHeader from '../../../UI/Grid/GridHeader/GridHeader';
 
-const ResultsHeader = () => (
+const ResultsHeader: FC = () => (
   <GridHeader item="results">
     <div>#</div>
     <div>Code</div>
