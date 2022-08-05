@@ -2,3 +2,5 @@
 export const FIRST_SEASON_YEAR = 1950;
 
 export const CURRENT_YEAR: number = new Date().getFullYear();
+
+export const BASE_URL = 'https://ergast.com/api/f1';

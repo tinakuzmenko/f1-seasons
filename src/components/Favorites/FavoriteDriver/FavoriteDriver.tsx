@@ -1,10 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 
 import useRequest, { Response, TransformData } from '../../../hooks/useRequest';
-import {
-  DriverInterface,
-  DriverResponseInterface,
-} from '../../../types/Driver.interface';
+import { DriverInterface } from '../../../types/Driver.interface';
+import { BASE_URL } from '../../../utilities/constants';
 import { getFormattedDate } from '../../../utilities/helpers';
 import CenteredContent from '../../UI/CenteredContent/CenteredContent';
 import GridRow from '../../UI/Grid/GridRow/GridRow';
@@ -31,7 +29,9 @@ const FavoriteDriver: FC<FavoriteDriverProps> = ({ driver, onRemove }) => {
       }
     };
 
-    getDriver({ endpoint: 'driver', params: driver }, storeFavoriteDriver);
+    const endpoint = `${BASE_URL}/drivers/${driver}.json`;
+
+    getDriver({ endpoint }, storeFavoriteDriver);
   }, [getDriver]);
 
   if (isLoading) return <GridRow>Loading..</GridRow>;

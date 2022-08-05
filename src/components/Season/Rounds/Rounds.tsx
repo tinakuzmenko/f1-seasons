@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 
 import useRequest, { Response, TransformData } from '../../../hooks/useRequest';
 import { RaceInterface } from '../../../types/Round.interface';
+import { BASE_URL } from '../../../utilities/constants';
 import CenteredContent from '../../UI/CenteredContent/CenteredContent';
 import GridLayout from '../../UI/Grid/GridLayout/GridLayout';
 import Loader from '../../UI/Loader/Loader';
@@ -23,7 +24,9 @@ const Rounds: FC<RoundsProps> = ({ season }) => {
       }
     };
 
-    getSeasonRounds({ endpoint: 'rounds', params: season }, storeRounds);
+    const endpoint = `${BASE_URL}/${season}.json`;
+
+    getSeasonRounds({ endpoint }, storeRounds);
 
     return () => {
       setRounds([]);

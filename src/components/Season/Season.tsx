@@ -2,11 +2,9 @@ import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import useRequest, { Response, TransformData } from '../../hooks/useRequest';
-import {
-  SeasonInterface,
-  TableSeasonInterface,
-} from '../../types/Season.interface';
-import { CURRENT_YEAR } from '../../utilities/constants';
+import { TableSeasonInterface } from '../../types/Season.interface';
+import { BASE_URL, CURRENT_YEAR } from '../../utilities/constants';
+import { getSeasonsLimit } from '../../utilities/helpers';
 import CenteredContent from '../UI/CenteredContent/CenteredContent';
 import Loader from '../UI/Loader/Loader';
 import SectionTitle from '../UI/SectionTitle/SectionTitle';
@@ -34,7 +32,9 @@ const Season: FC = () => {
       }
     };
 
-    getSeasons({ endpoint: 'seasons' }, storeSeasons);
+    const endpoint = `${BASE_URL}/seasons.json?limit=${getSeasonsLimit()}`;
+
+    getSeasons({ endpoint }, storeSeasons);
   }, [getSeasons]);
 
   useEffect(() => {

@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import useRequest, { Response, TransformData } from '../../hooks/useRequest';
-import {
-  RaceInterface,
-  ResultInterface,
-  RoundInterface,
-} from '../../types/Round.interface';
+import useRequest, { Response } from '../../hooks/useRequest';
+import { RaceInterface, ResultInterface } from '../../types/Round.interface';
+import { BASE_URL } from '../../utilities/constants';
 import {
   getFromStorageData,
   setToStorageData,
@@ -42,10 +39,9 @@ const RoundResults = () => {
       }
     };
 
-    getRoundData(
-      { endpoint: 'round', params: [seasonId, roundId] },
-      storeRoundData,
-    );
+    const endpoint = `${BASE_URL}/${seasonId}/${roundId}/results.json`;
+
+    getRoundData({ endpoint }, storeRoundData);
   }, [seasonId, roundId]);
 
   useEffect(() => {

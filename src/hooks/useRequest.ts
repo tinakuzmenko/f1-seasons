@@ -3,16 +3,12 @@ import { useCallback, useState } from 'react';
 import { DriverResponseInterface } from '../types/Driver.interface';
 import { RoundInterface } from '../types/Round.interface';
 import { SeasonInterface } from '../types/Season.interface';
-import { constructEndpoint } from '../utilities/helpers';
 
 interface ConfigInterface {
   endpoint: string;
   method?: 'GET' | 'POST';
-  headers?: {
-    'Content-Type': string;
-  };
-  body?: unknown;
-  params?: string | string[];
+  headers?: HeadersInit;
+  body?: BodyInit;
 }
 
 export type Response =
@@ -28,13 +24,11 @@ const useRequest = () => {
 
   const sendRequest = useCallback(
     async (config: ConfigInterface, transformData: TransformData) => {
-      const url = constructEndpoint(config.endpoint, config.params);
-
       setIsLoading(true);
       setError(null);
 
       try {
-        const response = await fetch(url, {
+        const response = await fetch(config.endpoint, {
           method: config.method ?? 'GET',
           headers: config.headers ?? {},
           body: config.body ? JSON.stringify(config.body) : null,
