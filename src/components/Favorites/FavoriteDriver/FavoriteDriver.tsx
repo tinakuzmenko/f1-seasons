@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 
-import useRequest from '../../../hooks/useRequest';
+import useRequest, { Response, TransformData } from '../../../hooks/useRequest';
 import {
   DriverInterface,
   DriverResponseInterface,
@@ -25,8 +25,10 @@ const FavoriteDriver: FC<FavoriteDriverProps> = ({ driver, onRemove }) => {
   const { isLoading, error, sendRequest: getDriver } = useRequest();
 
   useEffect(() => {
-    const storeFavoriteDriver = (response: DriverResponseInterface) => {
-      setDriverData(response.MRData.DriverTable.Drivers[0]);
+    const storeFavoriteDriver: TransformData = (response: Response) => {
+      if ('DriverTable' in response.MRData) {
+        setDriverData(response.MRData.DriverTable.Drivers[0]);
+      }
     };
 
     getDriver({ endpoint: 'driver', params: driver }, storeFavoriteDriver);

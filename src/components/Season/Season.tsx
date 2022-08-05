@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import useRequest from '../../hooks/useRequest';
+import useRequest, { Response, TransformData } from '../../hooks/useRequest';
 import {
   SeasonInterface,
   TableSeasonInterface,
@@ -24,12 +24,14 @@ const Season: FC = () => {
   const { isLoading, error, sendRequest: getSeasons } = useRequest();
 
   useEffect(() => {
-    const storeSeasons = (response: SeasonInterface) => {
-      const sortedSeasons: TableSeasonInterface[] = [
-        ...response.MRData.SeasonTable.Seasons,
-      ].sort((a, b) => parseInt(b.season, 10) - parseInt(a.season, 10));
+    const storeSeasons: TransformData = (response: Response): void => {
+      if ('SeasonTable' in response.MRData) {
+        const sortedSeasons: TableSeasonInterface[] = [
+          ...response.MRData.SeasonTable.Seasons,
+        ].sort((a, b) => parseInt(b.season, 10) - parseInt(a.season, 10));
 
-      setSeasons(sortedSeasons);
+        setSeasons(sortedSeasons);
+      }
     };
 
     getSeasons({ endpoint: 'seasons' }, storeSeasons);

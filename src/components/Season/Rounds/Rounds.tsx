@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 
-import useRequest from '../../../hooks/useRequest';
-import { RaceInterface, RoundInterface } from '../../../types/Round.interface';
+import useRequest, { Response, TransformData } from '../../../hooks/useRequest';
+import { RaceInterface } from '../../../types/Round.interface';
 import CenteredContent from '../../UI/CenteredContent/CenteredContent';
 import GridLayout from '../../UI/Grid/GridLayout/GridLayout';
 import Loader from '../../UI/Loader/Loader';
@@ -17,8 +17,12 @@ const Rounds: FC<RoundsProps> = ({ season }) => {
   const { isLoading, error, sendRequest: getSeasonRounds } = useRequest();
 
   useEffect(() => {
-    const storeRounds = (response: RoundInterface) =>
-      setRounds(response.MRData.RaceTable.Races);
+    const storeRounds: TransformData = (response: Response) => {
+      if ('RaceTable' in response.MRData) {
+        setRounds(response.MRData.RaceTable.Races);
+      }
+    };
+
     getSeasonRounds({ endpoint: 'rounds', params: season }, storeRounds);
 
     return () => {

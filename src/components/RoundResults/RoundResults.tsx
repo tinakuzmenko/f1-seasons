@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import useRequest from '../../hooks/useRequest';
+import useRequest, { Response, TransformData } from '../../hooks/useRequest';
 import {
   RaceInterface,
   ResultInterface,
@@ -23,7 +23,7 @@ const RoundResults = () => {
   const [results, setResults] = useState<ResultInterface[]>([]);
   const { isLoading, error, sendRequest: getRoundData } = useRequest();
   const [favoriteDrivers, setFavoriteDrivers] = useState<string[]>([]);
-  const { seasonId, roundId } = useParams();
+  const { seasonId = '', roundId = '' } = useParams();
 
   useEffect(() => {
     const storageItems = getFromStorageData('favorites');
@@ -31,13 +31,15 @@ const RoundResults = () => {
   }, []);
 
   useEffect(() => {
-    const storeRoundData = (response: RoundInterface) => {
-      const sortedResults = [
-        ...response.MRData.RaceTable.Races[0].Results,
-      ].sort((a, b) => parseInt(a.position, 10) - parseInt(b.position, 10));
+    const storeRoundData = (response: Response) => {
+      if ('RaceTable' in response.MRData) {
+        const sortedResults = [
+          ...response.MRData.RaceTable.Races[0].Results,
+        ].sort((a, b) => parseInt(a.position, 10) - parseInt(b.position, 10));
 
-      setRaceData(response.MRData.RaceTable.Races[0]);
-      setResults(sortedResults);
+        setRaceData(response.MRData.RaceTable.Races[0]);
+        setResults(sortedResults);
+      }
     };
 
     getRoundData(
