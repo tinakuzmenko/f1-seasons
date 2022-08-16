@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import {
   getFromStorageData,
@@ -10,7 +10,7 @@ import SectionTitle from '../UI/SectionTitle/SectionTitle';
 
 import FavoritesList from './FavoritesList/FavoritesList';
 
-const Favorites = () => {
+const Favorites: FC = () => {
   const [favorites, setFavorites] = useState<string[]>([]);
 
   useEffect(() => {

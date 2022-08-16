@@ -23,6 +23,11 @@ interface DriverInterface {
   nationality: string;
 }
 
+interface TimeInterface {
+  time: string;
+  millis?: string;
+}
+
 interface ConstructorInterface {
   constructorId: string;
   url: string;
@@ -33,9 +38,7 @@ interface ConstructorInterface {
 interface FastestLapInterface {
   rank: string;
   lap: string;
-  Time: {
-    time: string;
-  };
+  Time: TimeInterface;
   AverageSpeed: {
     units: string;
     speed: string;
@@ -52,10 +55,7 @@ export interface ResultInterface {
   grid: string;
   laps: string;
   status: string;
-  Time: {
-    millis: string;
-    time: string;
-  };
+  Time: TimeInterface;
   FastestLap: FastestLapInterface;
 }
 

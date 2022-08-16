@@ -7,7 +7,7 @@ import { SelectWrapper } from './styles';
 interface SeasonSelectProps {
   selected: string;
   seasons: TableSeasonInterface[];
-  onChange: (value: string) => void;
+  onChange(value: string): void;
 }
 
 const SeasonSelect: FC<SeasonSelectProps> = ({

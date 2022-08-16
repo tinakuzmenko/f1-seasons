@@ -8,8 +8,8 @@ import RoundResult from './RoundResult/RoundResult';
 
 interface RoundResultsListProps {
   results: ResultInterface[];
-  onFavoritesClick: (id: string) => void;
   favorites: string[];
+  onFavoritesClick(id: string): void;
 }
 
 const RoundResultsList: FC<RoundResultsListProps> = ({

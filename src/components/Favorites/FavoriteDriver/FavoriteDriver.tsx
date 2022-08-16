@@ -15,12 +15,14 @@ import IconButton from '../../UI/IconButton/IconButton';
 
 interface FavoriteDriverProps {
   driver: string;
-  onRemove: (id: string) => void;
+  onRemove(id: string): void;
 }
 
 const FavoriteDriver: FC<FavoriteDriverProps> = ({ driver, onRemove }) => {
   const [driverData, setDriverData] = useState<DriverInterface | null>(null);
   const { isLoading, error, sendRequest: getDriver } = useRequest();
+
+  const endpoint = `${BASE_URL}/drivers/${driver}.json`;
 
   useEffect(() => {
     const storeFavoriteDriver: TransformData = (response: Response) => {
@@ -28,8 +30,6 @@ const FavoriteDriver: FC<FavoriteDriverProps> = ({ driver, onRemove }) => {
         setDriverData(response.MRData.DriverTable.Drivers[0]);
       }
     };
-
-    const endpoint = `${BASE_URL}/drivers/${driver}.json`;
 
     getDriver({ endpoint }, storeFavoriteDriver);
   }, [getDriver]);

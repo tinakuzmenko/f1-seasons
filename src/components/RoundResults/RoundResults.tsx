@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import useRequest, { Response } from '../../hooks/useRequest';
@@ -15,12 +15,14 @@ import SectionTitle from '../UI/SectionTitle/SectionTitle';
 
 import RoundResultsList from './RoundResultsList/RoundResultsList';
 
-const RoundResults = () => {
+const RoundResults: FC = () => {
   const [raceData, setRaceData] = useState<RaceInterface | null>(null);
   const [results, setResults] = useState<ResultInterface[]>([]);
   const { isLoading, error, sendRequest: getRoundData } = useRequest();
   const [favoriteDrivers, setFavoriteDrivers] = useState<string[]>([]);
   const { seasonId = '', roundId = '' } = useParams();
+
+  const endpoint = `${BASE_URL}/${seasonId}/${roundId}/results.json`;
 
   useEffect(() => {
     const storageItems = getFromStorageData('favorites');
@@ -38,8 +40,6 @@ const RoundResults = () => {
         setResults(sortedResults);
       }
     };
-
-    const endpoint = `${BASE_URL}/${seasonId}/${roundId}/results.json`;
 
     getRoundData({ endpoint }, storeRoundData);
   }, [seasonId, roundId]);

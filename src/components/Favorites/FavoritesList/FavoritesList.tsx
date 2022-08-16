@@ -5,7 +5,7 @@ import FavoritesHeader from '../FavoritesHeader/FavoritesHeader';
 
 interface FavoritesListProps {
   favorites: string[];
-  onRemove: (id: string) => void;
+  onRemove(id: string): void;
 }
 
 const FavoritesList: FC<FavoritesListProps> = ({ favorites, onRemove }) => (

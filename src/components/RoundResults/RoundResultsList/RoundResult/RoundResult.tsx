@@ -13,7 +13,7 @@ import IconButton from '../../../UI/IconButton/IconButton';
 interface RoundResultProps {
   result: ResultInterface;
   isFavorite: boolean;
-  onFavoritesClick: (id: string) => void;
+  onFavoritesClick(id: string): void;
 }
 
 const RoundResult: FC<RoundResultProps> = ({
